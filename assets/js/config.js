@@ -10,5 +10,9 @@ window.ROMANNO_CONFIG = {
   email: "contato@romanno.com.br",
 
   // WhatsApp só com números, com DDI e DDD. Ex.: "5531999999999". Vazio = esconde o botão.
-  whatsapp: "5531933015571"
+  whatsapp: "5531933015571",
+
+  // Endereço do worker de propostas e pagamentos (Cloudflare). Ex.: "https://romanno-pagamentos.SEU-USUARIO.workers.dev"
+  // Enquanto estiver vazio, a página de proposta avisa que os pagamentos estão em configuração.
+  pagamentosApi: ""
 };

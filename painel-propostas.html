@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Painel de propostas — Romanno Tecnologia</title>
+<meta name="robots" content="noindex,nofollow">
+<meta name="referrer" content="no-referrer">
+<meta name="theme-color" content="#1C3B2E">
+<link rel="icon" href="favicon.ico" sizes="48x48">
+<link rel="icon" href="assets/img/monograma.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/proposta.css">
+<script src="assets/js/config.js"></script>
+<script src="assets/js/painel.js" defer></script>
+</head>
+<body class="pp adm">
+<header class="pp-top">
+  <div class="pp-wrap pp-top-in">
+    <a class="brand" href="./" aria-label="Romanno Tecnologia — início">
+      <svg class="brand-mark" viewBox="252 195 360 360" fill="none" aria-hidden="true"><circle cx="432" cy="375" r="167" stroke="#B8BEC2" stroke-width="8"/><circle cx="551" cy="255" r="13" fill="currentColor"/><g stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"><path d="M376 287V461"/><path d="M376 287H457L495 325V339L457 386H376"/><path d="M457 386L485 444"/></g><g fill="currentColor"><circle cx="376" cy="287" r="17"/><circle cx="376" cy="462" r="17"/><circle cx="374" cy="387" r="11"/><circle cx="495" cy="337" r="13"/></g><circle cx="493" cy="462" r="14" stroke="currentColor" stroke-width="9"/></svg>
+      <span class="brand-text"><b>ROMANNO</b><small>Tecnologia</small></span>
+    </a>
+    <span class="pp-top-tag">Painel de propostas</span>
+  </div>
+</header>
+<main class="pp-wrap pp-main">
+  <section class="pp-card" id="login">
+    <h2>Entrar</h2>
+    <form id="form-login">
+      <label class="pp-field"><span>Senha do painel (ADMIN_TOKEN)</span><input type="password" id="token" autocomplete="current-password" required></label>
+      <p class="pp-erro" id="login-erro" hidden></p>
+      <button class="btn primary" type="submit">Entrar <span class="arr">→</span></button>
+    </form>
+  </section>
+
+  <div id="painel" hidden>
+    <section class="pp-card">
+      <div class="pp-invest-head"><h2>Nova proposta</h2><button class="pp-link" type="button" id="sair">Sair</button></div>
+      <form id="form-nova" novalidate>
+        <div class="adm-grid">
+          <label class="pp-field"><span>Nome do cliente *</span><input name="cliente_nome" required></label>
+          <label class="pp-field"><span>Empresa</span><input name="cliente_empresa"></label>
+          <label class="pp-field"><span>E-mail do cliente *</span><input name="cliente_email" type="email" required></label>
+          <label class="pp-field"><span>Título do projeto *</span><input name="titulo" placeholder="Ex.: Site institucional da clínica" required></label>
+          <label class="pp-field full"><span>Resumo</span><textarea name="resumo" placeholder="O que vamos resolver, em 2 ou 3 frases."></textarea></label>
+          <label class="pp-field full"><span>O que está incluso * (um item por linha)</span><textarea name="escopo" rows="6" placeholder="Página inicial com apresentação e serviços&#10;Botão de WhatsApp em todas as páginas&#10;Configuração do domínio e do Google"></textarea></label>
+          <label class="pp-field"><span>Prazo de entrega</span><input name="prazo" placeholder="Ex.: 20 dias úteis após o aceite"></label>
+          <label class="pp-field"><span>Válida até</span><input name="validade" type="date"></label>
+          <label class="pp-field full"><span>Observações</span><textarea name="observacoes" placeholder="Condições, o que não está incluso, manutenção…"></textarea></label>
+          <label class="pp-field"><span>Valor total (R$) *</span><input name="valor_total" inputmode="decimal" placeholder="3.000,00" required></label>
+        </div>
+        <h3>Como o cliente paga</h3>
+        <div class="adm-modelos" id="modelos">
+          <button type="button" data-modelo="integral" class="on">Valor integral</button>
+          <button type="button" data-modelo="50">50% entrada + 50% entrega</button>
+          <button type="button" data-modelo="livre">Personalizado</button>
+        </div>
+        <div class="adm-cobs" id="cobs"></div>
+        <button class="pp-link" type="button" id="add-cob" hidden>+ adicionar etapa</button>
+        <p class="adm-soma" id="soma"></p>
+        <p class="pp-erro" id="nova-erro" hidden></p>
+        <button class="btn primary" type="submit" id="btn-criar">Criar proposta <span class="arr">→</span></button>
+        <div class="adm-novo-link" id="novo-link" hidden></div>
+      </form>
+    </section>
+
+    <section class="pp-card">
+      <div class="pp-invest-head"><h2>Propostas</h2><button class="pp-link" type="button" id="atualizar">Atualizar</button></div>
+      <div class="adm-lista" id="lista"><p class="pp-nota">Nenhuma proposta ainda.</p></div>
+    </section>
+  </div>
+</main>
+</body>
+</html>
