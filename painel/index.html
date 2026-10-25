@@ -14,59 +14,68 @@
 }
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);font-size:16px;line-height:1.5}
-.wrap{max-width:720px;margin:0 auto;padding:40px max(16px,env(safe-area-inset-right)) 64px max(16px,env(safe-area-inset-left))}
-.brand{display:flex;flex-direction:column;gap:2px;margin-bottom:28px}
+.wrap{max-width:1200px;margin:0 auto;padding:36px max(16px,env(safe-area-inset-right)) 64px max(16px,env(safe-area-inset-left))}
+.brand{display:flex;flex-direction:column;gap:2px;margin-bottom:24px}
 .brand b{font-weight:400;letter-spacing:.42em;font-size:15px;color:var(--green)}
 .brand span{letter-spacing:.42em;font-size:10px;color:var(--muted)}
-h1{font-weight:300;font-size:clamp(30px,6vw,40px);line-height:1.1;margin:0 0 8px}
+h1{font-weight:300;font-size:clamp(30px,5vw,40px);line-height:1.1;margin:0 0 8px}
 h1 em{color:var(--green)}
-.lead{color:var(--muted);margin:0 0 28px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:24px}
-form{display:flex;flex-direction:column;gap:20px}
-fieldset{border:0;padding:0;margin:0;display:flex;flex-direction:column;gap:10px}
-legend{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
-.models{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
+.lead{color:var(--muted);margin:0 0 24px;max-width:64ch}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:22px}
+.layout{display:flex;flex-wrap:wrap;gap:16px;align-items:flex-start;margin-top:16px}
+.col-form{flex:1 1 420px;min-width:0}
+.col-prev{flex:1 1 460px;min-width:0;position:sticky;top:16px}
+form{display:flex;flex-direction:column;gap:18px}
+.group-title{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin:0 0 8px}
+.models{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px}
 .model{position:relative}
 .model input{position:absolute;opacity:0;inset:0}
-.model label{display:flex;flex-direction:column;gap:4px;border:1px solid var(--line);border-radius:8px;padding:14px 16px;cursor:pointer;min-height:44px}
-.model label small{color:var(--muted);font-size:13px}
+.model label{display:flex;flex-direction:column;gap:2px;border:1px solid var(--line);border-radius:8px;padding:11px 14px;cursor:pointer;min-height:44px;height:100%}
+.model label small{color:var(--muted);font-size:13px;line-height:1.35}
 .model input:checked + label{border-color:var(--green);box-shadow:inset 0 0 0 1px var(--green);background:var(--soft)}
 .model input:focus-visible + label{outline:2px solid var(--green);outline-offset:2px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
 .field{display:flex;flex-direction:column;gap:6px;min-width:0}
 .field label{font-size:14px}
 .field label small{color:var(--muted)}
-input[type=text],input[type=email],input[type=tel],input[type=password],input[type=url],textarea{font:inherit;font-size:16px;width:100%;border:1px solid var(--line);border-radius:8px;padding:11px 12px;background:#fff;color:var(--ink)}
-textarea{min-height:110px;resize:vertical}
+input[type=text],input[type=email],input[type=tel],input[type=password],input[type=url],input[type=date],textarea{font:inherit;font-size:16px;width:100%;border:1px solid var(--line);border-radius:8px;padding:10px 12px;background:#fff;color:var(--ink)}
+textarea{min-height:96px;resize:vertical}
 input:focus,textarea:focus{outline:2px solid var(--green);outline-offset:1px;border-color:var(--green)}
 .check{display:flex;align-items:center;gap:10px;font-size:15px}
 .check input{width:20px;height:20px;accent-color:var(--green)}
 .actions{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
-button,.btn{font:inherit;font-size:16px;border-radius:999px;padding:12px 22px;min-height:44px;cursor:pointer;border:1px solid var(--green);text-decoration:none;display:inline-flex;align-items:center;gap:8px}
+button,.btn{font:inherit;font-size:16px;border-radius:999px;padding:11px 22px;min-height:44px;cursor:pointer;border:1px solid var(--green);text-decoration:none;display:inline-flex;align-items:center;gap:8px}
 .primary{background:var(--green);color:#fff}
 .secondary{background:transparent;color:var(--green)}
 button:disabled{opacity:.55;cursor:wait}
 button:focus-visible,.btn:focus-visible{outline:2px solid var(--green);outline-offset:3px}
 .status{font-size:15px;color:var(--muted)}
 .status.err{color:var(--danger)}
-.result{margin-top:20px;display:flex;flex-direction:column;gap:14px}
-.result h2{font-weight:400;font-size:22px;margin:0}
-.result ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px}
-.wa{white-space:pre-wrap;background:var(--soft);border-radius:8px;padding:14px 16px;font-size:15px}
 .key{display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end}
 .key .field{flex:1 1 240px}
 .muted{color:var(--muted);font-size:14px}
 .hide{display:none!important}
 a{color:var(--green)}
+.tabs{display:flex;gap:6px;margin-bottom:12px}
+.tab{font-size:14px;padding:8px 14px;min-height:40px;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--ink)}
+.tab[aria-selected="true"]{border-color:var(--green);background:var(--soft);color:var(--green)}
+.subject{font-size:14px;color:var(--muted);margin:0 0 10px}
+.subject b{color:var(--ink);font-weight:500}
+.frame{width:100%;height:640px;border:1px solid var(--line);border-radius:8px;background:#F4F5F4;display:block}
+.wa{white-space:pre-wrap;background:#E7F3EC;border-radius:10px 10px 10px 2px;padding:14px 16px;font-size:15px;max-width:440px}
+.result{display:flex;flex-direction:column;gap:14px}
+.result h2{font-weight:400;font-size:22px;margin:0}
+.result ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px}
+@media (max-width:900px){.col-prev{position:static}.frame{height:560px}}
 </style>
 </head>
 <body>
 <div class="wrap">
   <div class="brand"><b>ROMANNO</b><span>TECNOLOGIA</span></div>
   <h1>Painel de <em>prospecção.</em></h1>
-  <p class="lead">Preencha os dados do cliente. O painel envia o e-mail, atualiza o Trello e deixa a mensagem do WhatsApp pronta.</p>
+  <p class="lead">Escolha o modelo e preencha os dados. Confira a prévia ao lado e envie: o painel manda o e-mail, atualiza o Trello e deixa a mensagem do WhatsApp pronta.</p>
 
-  <section class="card" id="acesso">
+  <section class="card">
     <div class="key">
       <div class="field">
         <label for="chave">Chave de acesso</label>
@@ -77,150 +86,368 @@ a{color:var(--green)}
     <p class="muted" id="chaveInfo" style="margin:10px 0 0">A chave fica salva só neste navegador.</p>
   </section>
 
-  <section class="card" style="margin-top:16px">
-    <form id="form" novalidate>
-      <fieldset>
-        <legend>Modelo</legend>
-        <div class="models">
-          <div class="model">
-            <input type="radio" name="modelo" id="m-site" value="site" checked>
-            <label for="m-site"><span>Oferta de site</span><small>Para quem ainda não tem site próprio</small></label>
+  <div class="layout">
+    <section class="card col-form">
+      <form id="form" novalidate>
+        <div>
+          <p class="group-title">Prospecção</p>
+          <div class="models" id="modelosProsp"></div>
+        </div>
+        <div>
+          <p class="group-title">Clientes</p>
+          <div class="models" id="modelosCli"></div>
+        </div>
+
+        <div class="grid">
+          <div class="field">
+            <label for="empresa">Empresa</label>
+            <input id="empresa" type="text" required placeholder="Ex.: Clínica de Estética Renata Fontany">
           </div>
-          <div class="model">
-            <input type="radio" name="modelo" id="m-melhoria" value="melhoria">
-            <label for="m-melhoria"><span>Melhoria de site</span><small>Vi o site e posso melhorar</small></label>
+          <div class="field">
+            <label for="nome">Nome do contato <small>(opcional)</small></label>
+            <input id="nome" type="text" placeholder="Ex.: Renata">
+          </div>
+          <div class="field">
+            <label for="whatsapp">WhatsApp</label>
+            <input id="whatsapp" type="tel" inputmode="tel" placeholder="(31) 99999-9999">
+          </div>
+          <div class="field">
+            <label for="email">E-mail <small>(opcional)</small></label>
+            <input id="email" type="email" inputmode="email" placeholder="contato@empresa.com.br">
           </div>
         </div>
-      </fieldset>
 
-      <div class="grid">
-        <div class="field">
-          <label for="empresa">Empresa</label>
-          <input id="empresa" type="text" required placeholder="Ex.: Clínica de Estética Renata Fontany">
+        <div class="field" data-m="melhoria">
+          <label for="site">Site do cliente</label>
+          <input id="site" type="url" inputmode="url" placeholder="empresa.com.br">
         </div>
-        <div class="field">
-          <label for="nome">Nome do contato <small>(opcional)</small></label>
-          <input id="nome" type="text" placeholder="Ex.: Renata">
+        <div class="field" data-m="melhoria google">
+          <label for="pontos"><span data-m="melhoria">O que você encontrou no site</span><span data-m="google">O que você encontrou no perfil do Google</span> <small>(um ponto por linha)</small></label>
+          <textarea id="pontos" placeholder="Um ponto por linha"></textarea>
         </div>
-        <div class="field">
-          <label for="whatsapp">WhatsApp</label>
-          <input id="whatsapp" type="tel" inputmode="tel" placeholder="(31) 99999-9999">
+
+        <div class="grid" data-m="proposta entrega">
+          <div class="field">
+            <label for="projeto">Nome do projeto</label>
+            <input id="projeto" type="text" placeholder="Ex.: Site da Clínica Ava">
+          </div>
+          <div class="field" data-m="proposta">
+            <label for="prazo">Prazo estimado</label>
+            <input id="prazo" type="text" placeholder="Ex.: 3 semanas">
+          </div>
+          <div class="field" data-m="proposta">
+            <label for="valor">Investimento</label>
+            <input id="valor" type="text" placeholder="Ex.: R$ 1.500 + R$ 200/mês">
+          </div>
+          <div class="field" data-m="proposta">
+            <label for="pagamento">Forma de pagamento <small>(opcional)</small></label>
+            <input id="pagamento" type="text" placeholder="Ex.: 50% na entrada e 50% na entrega">
+          </div>
+          <div class="field" data-m="proposta">
+            <label for="validade">Validade da proposta</label>
+            <input id="validade" type="text" placeholder="Ex.: 7 dias">
+          </div>
+          <div class="field" data-m="entrega">
+            <label for="acesso">Como acessar o painel <small>(opcional)</small></label>
+            <input id="acesso" type="text" placeholder="Ex.: login enviado por WhatsApp">
+          </div>
+          <div class="field" data-m="entrega">
+            <label for="ajustes">Ajustes incluídos até <small>(opcional)</small></label>
+            <input id="ajustes" type="text" placeholder="Ex.: 10/11/2026">
+          </div>
         </div>
-        <div class="field">
-          <label for="email">E-mail <small>(opcional)</small></label>
-          <input id="email" type="email" inputmode="email" placeholder="contato@empresa.com.br">
+        <div class="field" data-m="proposta">
+          <label for="escopo">Escopo <small>(um item por linha)</small></label>
+          <textarea id="escopo" placeholder="Landing page com botão de WhatsApp&#10;Automação de agendamento&#10;Perfil do Google revisado"></textarea>
+        </div>
+        <div class="field" data-m="proposta entrega">
+          <label for="link"><span data-m="proposta">Link da proposta completa</span><span data-m="entrega">Link do projeto publicado</span> <small>(opcional)</small></label>
+          <input id="link" type="url" inputmode="url" placeholder="https://">
+        </div>
+
+        <div class="field" data-m="site melhoria automacao google">
+          <label for="gancho">Frase personalizada <small>(opcional, entra no e-mail e no WhatsApp)</small></label>
+          <input id="gancho" type="text" placeholder="Ex.: Vi que vocês têm 4,9 com 95 avaliações no Google.">
+        </div>
+
+        <label class="check"><input type="checkbox" id="enviarEmail" checked> Enviar e-mail (quando houver endereço)</label>
+
+        <div class="actions">
+          <button type="submit" class="primary" id="enviar">Enviar</button>
+          <span class="status" id="status" role="status" aria-live="polite"></span>
+        </div>
+      </form>
+
+      <div class="result hide" id="resultado">
+        <h2 id="resTitulo">Envio registrado</h2>
+        <ul id="resLista"></ul>
+        <div class="actions">
+          <a class="btn primary hide" id="waLink" href="#" target="_blank" rel="noopener">Abrir WhatsApp</a>
+          <button type="button" class="secondary" id="copiar">Copiar mensagem</button>
+          <button type="button" class="secondary" id="novo">Novo envio</button>
         </div>
       </div>
+    </section>
 
-      <div class="field hide" id="campoSite">
-        <label for="site">Site do cliente</label>
-        <input id="site" type="url" inputmode="url" placeholder="empresa.com.br">
+    <section class="card col-prev" aria-label="Prévia">
+      <div class="tabs" role="tablist">
+        <button type="button" class="tab" role="tab" id="tabEmail" aria-selected="true">Prévia do e-mail</button>
+        <button type="button" class="tab" role="tab" id="tabWa" aria-selected="false">Prévia do WhatsApp</button>
       </div>
-      <div class="field hide" id="campoPontos">
-        <label for="pontos">O que você encontrou <small>(um ponto por linha)</small></label>
-        <textarea id="pontos" placeholder="Rodapé com o nome de outra marca&#10;Sem botão de WhatsApp&#10;Título da aba com uma data interna"></textarea>
+      <div id="prevEmail">
+        <p class="subject">Assunto: <b id="prevAssunto"></b></p>
+        <iframe class="frame" id="prevFrame" title="Prévia do e-mail" sandbox=""></iframe>
       </div>
-      <div class="field">
-        <label for="gancho">Frase personalizada <small>(opcional, entra no e-mail e no WhatsApp)</small></label>
-        <input id="gancho" type="text" placeholder="Ex.: Vi que vocês têm 4,9 com 95 avaliações no Google.">
+      <div id="prevWa" class="hide">
+        <div class="wa" id="prevWaTexto"></div>
       </div>
-
-      <label class="check"><input type="checkbox" id="enviarEmail" checked> Enviar e-mail (quando houver endereço)</label>
-
-      <div class="actions">
-        <button type="submit" class="primary" id="enviar">Enviar prospecção</button>
-        <span class="status" id="status" role="status" aria-live="polite"></span>
-      </div>
-    </form>
-
-    <div class="result hide" id="resultado">
-      <h2 id="resTitulo">Prospecção registrada</h2>
-      <ul id="resLista"></ul>
-      <div class="wa" id="waTexto"></div>
-      <div class="actions">
-        <a class="btn primary hide" id="waLink" href="#" target="_blank" rel="noopener">Abrir WhatsApp</a>
-        <button type="button" class="secondary" id="copiar">Copiar mensagem</button>
-        <button type="button" class="secondary" id="novo">Novo cliente</button>
-      </div>
-    </div>
-  </section>
+    </section>
+  </div>
 </div>
 
 <script>
 (function(){
   var URL_WEBHOOK = 'https://romanno.app.n8n.cloud/webhook/prospeccao-romanno';
+  var WA_ROMANNO = '5531933015571';
   var $ = function(id){ return document.getElementById(id); };
-  var chave = $('chave'), info = $('chaveInfo'), status = $('status');
 
+  var MODELOS = [
+    { id:'site',      grupo:'p', nome:'Oferta de site',       desc:'Quem ainda não tem site próprio', etapa:'prospeccao' },
+    { id:'melhoria',  grupo:'p', nome:'Melhoria de site',     desc:'Vi o site e posso melhorar',      etapa:'prospeccao' },
+    { id:'automacao', grupo:'p', nome:'Automação de atendimento', desc:'Responder e agendar pelo WhatsApp', etapa:'prospeccao' },
+    { id:'google',    grupo:'p', nome:'Perfil do Google',     desc:'Perfil incompleto ou com erros',  etapa:'prospeccao' },
+    { id:'proposta',  grupo:'c', nome:'Proposta enviada',     desc:'Escopo, prazo e investimento',    etapa:'proposta' },
+    { id:'entrega',   grupo:'c', nome:'Projeto no ar',        desc:'Aviso de entrega ao cliente',     etapa:'entrega' }
+  ];
+
+  // ---------- Seletor de modelos ----------
+  MODELOS.forEach(function(m, i){
+    var box = document.createElement('div'); box.className = 'model';
+    box.innerHTML = '<input type="radio" name="modelo" id="m-' + m.id + '" value="' + m.id + '"' + (i === 0 ? ' checked' : '') + '>'
+      + '<label for="m-' + m.id + '"><span>' + m.nome + '</span><small>' + m.desc + '</small></label>';
+    $(m.grupo === 'p' ? 'modelosProsp' : 'modelosCli').appendChild(box);
+  });
+  function modeloAtual(){ var id = document.querySelector('input[name=modelo]:checked').value; return MODELOS.filter(function(m){ return m.id === id; })[0]; }
+
+  // ---------- Chave ----------
+  var chave = $('chave'), info = $('chaveInfo');
   try { var salva = localStorage.getItem('romanno-chave'); if (salva) { chave.value = salva; info.textContent = 'Chave salva neste aparelho.'; } } catch(e){}
   $('salvarChave').addEventListener('click', function(){
     try { localStorage.setItem('romanno-chave', chave.value.trim()); info.textContent = 'Chave salva neste aparelho.'; }
     catch(e){ info.textContent = 'Não foi possível salvar aqui. A chave vale só para esta visita.'; }
   });
 
-  function modelo(){ return document.querySelector('input[name=modelo]:checked').value; }
-  function ajustarCampos(){
-    var m = modelo() === 'melhoria';
-    $('campoSite').classList.toggle('hide', !m);
-    $('campoPontos').classList.toggle('hide', !m);
+  // ---------- Modelos de e-mail ----------
+  var C = { bg:'#F4F5F4', card:'#FFFFFF', line:'#DADEDB', ink:'#121413', green:'#1E3A2F', muted:'#5E6662', soft:'#E6EDE9', faint:'#8E9591' };
+  var F = "font-family:'Jost',Helvetica,Arial,sans-serif;";
+  function esc(v){ return String(v == null ? '' : v).replace(/[&<>"']/g, function(c){ return { '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]; }); }
+  function p(t){ return '<p style="' + F + 'margin:0 0 18px;font-size:16px;line-height:27px;color:' + C.ink + ';">' + t + '</p>'; }
+  function h2(t){ return '<h2 style="' + F + 'margin:28px 0 12px;font-size:21px;line-height:28px;font-weight:400;color:' + C.green + ';">' + t + '</h2>'; }
+  function ul(items){ return '<ul style="margin:0 0 18px;padding:0 0 0 20px;">' + items.map(function(i){ return '<li style="' + F + 'margin:0 0 10px;font-size:16px;line-height:26px;color:' + C.ink + ';">' + i + '</li>'; }).join('') + '</ul>'; }
+  function box(inner){ return '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:6px 0 22px;background:' + C.soft + ';border-radius:8px;"><tr><td style="padding:18px 22px;">' + inner + '</td></tr></table>'; }
+  function boxRows(rows){ return box(rows.map(function(r){ return '<div style="' + F + 'font-size:12px;line-height:18px;letter-spacing:2px;color:' + C.muted + ';text-transform:uppercase;">' + r[0] + '</div><div style="' + F + 'font-size:16px;line-height:24px;color:' + C.ink + ';margin:2px 0 12px;">' + r[1] + '</div>'; }).join('')); }
+  function boxList(titulo, itens){ return box('<div style="' + F + 'font-size:12px;line-height:18px;letter-spacing:2px;color:' + C.muted + ';margin:0 0 10px;">' + titulo + '</div><ul style="margin:0;padding:0 0 0 18px;">' + itens.map(function(i){ return '<li style="' + F + 'margin:0 0 8px;font-size:15px;line-height:24px;color:' + C.ink + ';">' + esc(i) + '</li>'; }).join('') + '</ul>'); }
+  function boxText(t){ return box('<div style="' + F + 'font-size:15px;line-height:24px;color:' + C.ink + ';">' + t + '</div>'); }
+  function it(t){ return '<span style="font-style:italic;color:' + C.green + ';">' + t + '</span>'; }
+  function btn(label, href){ return '<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin:10px 0 6px;"><tr><td style="background:' + C.green + ';border-radius:6px;"><a href="' + esc(href) + '" style="' + F + 'display:inline-block;padding:15px 28px;font-size:16px;font-weight:500;color:#FFFFFF;text-decoration:none;">' + label + '</a></td></tr></table>'; }
+  function assinatura(extra){ return '<p style="' + F + 'margin:26px 0 0;font-size:15px;line-height:24px;color:' + C.muted + ';">' + (extra ? extra + '<br>' : '') + 'Gustavo Romano<br>Romanno Tecnologia · <a href="https://romanno.com.br" style="color:' + C.green + ';">romanno.com.br</a></p>'; }
+  function layout(pre, titulo, corpo, rodapeExtra){
+    return '<div style="display:none;max-height:0;overflow:hidden;">' + pre + '</div>'
+      + '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:' + C.bg + ';"><tr><td align="center" style="padding:28px 12px;">'
+      + '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width:600px;background:' + C.card + ';border:1px solid ' + C.line + ';border-radius:6px;"><tr><td style="padding:40px 36px 36px;">'
+      + '<div style="' + F + 'font-size:13px;line-height:18px;letter-spacing:5px;color:' + C.green + ';">ROMANNO</div>'
+      + '<div style="' + F + 'font-size:10px;line-height:16px;letter-spacing:4px;color:' + C.muted + ';margin:0 0 22px;">TECNOLOGIA</div>'
+      + '<h1 style="' + F + 'margin:0 0 22px;font-size:30px;line-height:37px;font-weight:300;color:' + C.ink + ';">' + titulo + '</h1>'
+      + corpo
+      + '</td></tr></table>'
+      + '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width:600px;"><tr><td align="center" style="padding:22px 20px 6px;' + F + 'font-size:12px;line-height:20px;color:' + C.muted + ';">'
+      + 'Romanno Tecnologia · <a href="mailto:contato@romanno.com.br" style="color:' + C.green + ';">contato@romanno.com.br</a> · São Paulo, SP · atendimento remoto em todo o Brasil'
+      + (rodapeExtra ? '<br>' + rodapeExtra : '')
+      + '</td></tr></table></td></tr></table>';
   }
-  document.querySelectorAll('input[name=modelo]').forEach(function(r){ r.addEventListener('change', ajustarCampos); });
-  ajustarCampos();
+  function linhas(v){ return String(v || '').split(/\n+/).map(function(s){ return s.replace(/^[-•*\s]+/, '').trim(); }).filter(Boolean); }
+  function waLink(texto){ return 'https://wa.me/' + WA_ROMANNO + '?text=' + encodeURIComponent(texto); }
 
+  function dados(){
+    var g = function(id){ return $(id).value.trim(); };
+    return { empresa:g('empresa'), nome:g('nome'), whatsapp:g('whatsapp'), email:g('email'), site:g('site'), pontos:$('pontos').value,
+      gancho:g('gancho'), projeto:g('projeto'), prazo:g('prazo'), valor:g('valor'), pagamento:g('pagamento'), validade:g('validade'),
+      escopo:$('escopo').value, link:g('link'), acesso:g('acesso'), ajustes:g('ajustes') };
+  }
+
+  function montar(m, d){
+    var empresa = d.empresa || '[EMPRESA]';
+    var primeiro = (d.nome || '').split(/\s+/)[0];
+    var saud = primeiro ? 'Olá, ' + esc(primeiro) + '.' : 'Olá, equipe da ' + esc(empresa) + '.';
+    var saudTxt = primeiro ? 'Olá, ' + primeiro + '!' : 'Olá, equipe da ' + empresa + '!';
+    var g = d.gancho;
+    var optout = 'Você recebeu esta mensagem porque o contato da ' + esc(empresa) + ' é público. Se não quiser receber outras, responda com “remover” e eu não envio mais.';
+    var optoutTxt = '\n\nSe não quiser receber outras mensagens, responda com "remover".';
+    var assinaTxt = '\n\nGustavo Romano\nRomanno Tecnologia · romanno.com.br';
+    var cta = btn('Conversar no WhatsApp', waLink('Olá, Gustavo! Recebi seu e-mail sobre a ' + empresa + '.'));
+    var r = { modeloNome: m.nome, etapa: m.etapa };
+    var pts = linhas(d.pontos);
+
+    if (m.id === 'site') {
+      r.assunto = 'Um site para a ' + empresa;
+      r.html = layout('Uma página própria, rápida no celular e ligada ao seu WhatsApp.', 'Mais clientes chegando ' + it('direto no seu WhatsApp.'),
+        p(saud + ' Sou o Gustavo, da Romanno Tecnologia. Encontrei a ' + esc(empresa) + ' no Google e vi que vocês ainda não têm um site próprio.')
+        + (g ? p(esc(g)) : '')
+        + p('Hoje, quem procura pelo Google ou chega pelo Instagram quer entender rápido o que vocês fazem e falar com alguém. Uma página bem feita resolve isso e passa mais confiança.')
+        + h2('O que eu faço')
+        + ul(['<b>Página profissional</b>, rápida no celular e com a identidade da sua marca.', '<b>Botão de WhatsApp</b> em todas as seções, para o cliente chamar na hora.', '<b>Presença no Google</b>: perfil revisado e página preparada para a busca local.', '<b>Automação opcional</b> para responder e organizar os contatos que chegam.'])
+        + boxText('Você aprova o layout antes de eu começar a programar. A conversa é sem compromisso.')
+        + p('Se fizer sentido, me chama no WhatsApp ou responda este e-mail.') + cta + assinatura(), optout);
+      r.texto = saudTxt + '\n\nSou o Gustavo, da Romanno Tecnologia. Encontrei a ' + empresa + ' no Google e vi que vocês ainda não têm um site próprio.' + (g ? '\n\n' + g : '') + '\n\nO que eu faço:\n- Página profissional, rápida no celular e com a identidade da sua marca\n- Botão de WhatsApp em todas as seções\n- Presença no Google (perfil revisado e busca local)\n- Automação opcional para responder os contatos\n\nVocê aprova o layout antes de eu começar a programar. A conversa é sem compromisso.\n\nWhatsApp: (31) 93301-5571' + assinaTxt + optoutTxt;
+      r.whatsapp = saudTxt + ' Tudo bem? Aqui é o Gustavo, da Romanno Tecnologia.\n\nEncontrei a ' + empresa + ' no Google e vi que vocês ainda não têm um site próprio.' + (g ? ' ' + g : '') + '\n\nEu crio páginas rápidas no celular, com botão de WhatsApp e preparadas para aparecer no Google. Posso te mostrar um exemplo de como ficaria para vocês? É sem compromisso.';
+    }
+
+    else if (m.id === 'melhoria') {
+      var lista = pts.length ? pts : ['[PONTO 1]', '[PONTO 2]', '[PONTO 3]'];
+      var siteTxt = d.site.replace(/^https?:\/\//i, '').replace(/\/$/, '');
+      var siteUrl = d.site && !/^https?:\/\//i.test(d.site) ? 'https://' + d.site : d.site;
+      r.assunto = 'Alguns ajustes no site da ' + empresa;
+      r.html = layout('Separei alguns pontos do seu site que podem estar afastando clientes.', 'Visitei o site da ' + esc(empresa) + ' e ' + it('anotei alguns ajustes.'),
+        p(saud + ' Sou o Gustavo, da Romanno Tecnologia. Visitei ' + (siteUrl ? '<a href="' + esc(siteUrl) + '" style="color:' + C.green + ';">' + esc(siteTxt) + '</a>' : 'o site de vocês') + ' e separei alguns pontos que podem estar afastando quem chega até vocês:')
+        + boxList('O QUE ENCONTREI', lista) + (g ? p(esc(g)) : '')
+        + h2('Como eu posso ajudar')
+        + p('São ajustes que eu resolvo de forma rápida, sem precisar refazer tudo. Se preferir, também posso propor uma página nova. Antes de qualquer compromisso, te mostro como ficaria.')
+        + cta + assinatura(), optout);
+      r.texto = saudTxt + '\n\nSou o Gustavo, da Romanno Tecnologia. Visitei ' + (siteTxt || 'o site de vocês') + ' e separei alguns pontos que podem estar afastando quem chega até vocês:\n\n' + lista.map(function(i){ return '- ' + i; }).join('\n') + (g ? '\n\n' + g : '') + '\n\nSão ajustes que eu resolvo de forma rápida, sem precisar refazer tudo. Antes de qualquer compromisso, te mostro como ficaria.\n\nWhatsApp: (31) 93301-5571' + assinaTxt + optoutTxt;
+      r.whatsapp = saudTxt + ' Tudo bem? Aqui é o Gustavo, da Romanno Tecnologia.\n\nVisitei o site da ' + empresa + (siteTxt ? ' (' + siteTxt + ')' : '') + ' e anotei alguns pontos que dá para melhorar' + (pts[0] ? ', como: ' + pts[0].replace(/\.$/, '').toLowerCase() : '') + '.' + (g ? ' ' + g : '') + '\n\nPosso te mandar a lista completa? É sem compromisso.';
+    }
+
+    else if (m.id === 'automacao') {
+      r.assunto = 'Atendimento automático no WhatsApp da ' + empresa;
+      r.html = layout('Responder na hora, confirmar horários e lembrar o cliente de voltar, sem perder tempo no celular.', 'Nenhum cliente esperando ' + it('resposta no WhatsApp.'),
+        p(saud + ' Sou o Gustavo, da Romanno Tecnologia. Vi que boa parte do atendimento da ' + esc(empresa) + ' passa pelo WhatsApp.')
+        + (g ? p(esc(g)) : '')
+        + p('Quando a mensagem demora a ser respondida, muita gente desiste e procura outro lugar. Eu monto automações simples que cuidam dessa primeira parte para vocês.')
+        + h2('O que a automação faz')
+        + ul(['<b>Responde na hora</b>, a qualquer horário, com as informações principais e os próximos passos.', '<b>Organiza os pedidos de horário</b> e avisa você de cada novo contato.', '<b>Confirma e lembra</b> o cliente do atendimento marcado, para reduzir faltas.', '<b>Chama de volta</b> quem já foi cliente, no momento certo de retornar.'])
+        + boxText('Tudo continua no seu número de WhatsApp. Você decide o que é automático e o que fica com você.')
+        + p('Se quiser ver como funcionaria no dia a dia de vocês, me chama no WhatsApp.') + cta + assinatura(), optout);
+      r.texto = saudTxt + '\n\nSou o Gustavo, da Romanno Tecnologia. Vi que boa parte do atendimento da ' + empresa + ' passa pelo WhatsApp.' + (g ? '\n\n' + g : '') + '\n\nEu monto automações simples que:\n- Respondem na hora, a qualquer horário\n- Organizam os pedidos de horário e avisam você\n- Confirmam e lembram o cliente do atendimento marcado\n- Chamam de volta quem já foi cliente\n\nTudo continua no seu número de WhatsApp.\n\nWhatsApp: (31) 93301-5571' + assinaTxt + optoutTxt;
+      r.whatsapp = saudTxt + ' Tudo bem? Aqui é o Gustavo, da Romanno Tecnologia.\n\nVi que boa parte do atendimento da ' + empresa + ' passa pelo WhatsApp.' + (g ? ' ' + g : '') + '\n\nEu monto automações que respondem na hora, organizam os horários e lembram o cliente do atendimento, tudo no seu próprio número. Posso te mostrar como funcionaria para vocês? É sem compromisso.';
+    }
+
+    else if (m.id === 'google') {
+      var listaG = pts.length ? pts : ['[PONTO 1]', '[PONTO 2]'];
+      r.assunto = 'O perfil da ' + empresa + ' no Google';
+      r.html = layout('Alguns ajustes no seu perfil do Google para quem procura encontrar e escolher vocês.', 'Quem procura no Google ' + it('precisa achar vocês do jeito certo.'),
+        p(saud + ' Sou o Gustavo, da Romanno Tecnologia. Pesquisei a ' + esc(empresa) + ' no Google e notei alguns pontos no perfil que podem estar fazendo vocês perderem contatos:')
+        + boxList('O QUE ENCONTREI', listaG) + (g ? p(esc(g)) : '')
+        + h2('Como eu posso ajudar')
+        + ul(['<b>Reivindicar e revisar o perfil</b>, com horários, endereço, fotos e serviços corretos.', '<b>Botão de WhatsApp e site</b> ligados ao perfil, para o contato ser direto.', '<b>Página própria</b>, se fizer sentido, para quem quer saber mais antes de chamar.'])
+        + p('É um trabalho rápido e que faz diferença em quem procura por perto. Me chama no WhatsApp se quiser conversar.') + cta + assinatura(), optout);
+      r.texto = saudTxt + '\n\nSou o Gustavo, da Romanno Tecnologia. Pesquisei a ' + empresa + ' no Google e notei alguns pontos no perfil:\n\n' + listaG.map(function(i){ return '- ' + i; }).join('\n') + (g ? '\n\n' + g : '') + '\n\nPosso reivindicar e revisar o perfil, ligar o WhatsApp e, se fizer sentido, criar uma página própria.\n\nWhatsApp: (31) 93301-5571' + assinaTxt + optoutTxt;
+      r.whatsapp = saudTxt + ' Tudo bem? Aqui é o Gustavo, da Romanno Tecnologia.\n\nPesquisei a ' + empresa + ' no Google e notei alguns pontos no perfil que podem estar afastando clientes' + (pts[0] ? ', como: ' + pts[0].replace(/\.$/, '').toLowerCase() : '') + '.' + (g ? ' ' + g : '') + '\n\nPosso te mandar o que eu ajustaria? É sem compromisso.';
+    }
+
+    else if (m.id === 'proposta') {
+      var proj = d.projeto || '[NOME DO PROJETO]';
+      var itens = linhas(d.escopo);
+      r.assunto = 'Sua proposta de projeto — ' + proj;
+      r.html = layout('Escopo, prazo e investimento do seu projeto.', 'Sua proposta ' + it('está pronta.'),
+        p((primeiro ? 'Olá, ' + esc(primeiro) + '.' : 'Olá.') + ' Conforme conversamos, segue a proposta para ' + esc(proj) + '.')
+        + boxRows([['Escopo', itens.length ? itens.map(esc).join('<br>') : '[ESCOPO]'], ['Prazo estimado', esc(d.prazo || '[PRAZO]')], ['Investimento', esc(d.valor || '[VALOR]') + (d.pagamento ? ' · ' + esc(d.pagamento) : '')]])
+        + h2('Como funciona')
+        + ul(['<b>Diagnóstico.</b> Reunião e levantamento do processo.', '<b>Design e protótipo.</b> Você aprova antes de começarmos a programar.', '<b>Desenvolvimento e entrega.</b> Publicação, testes e ajustes finais.'])
+        + boxText('A proposta é válida por ' + esc(d.validade || '[VALIDADE]') + '. Se quiser ajustar algo no escopo, é só me avisar que eu atualizo.')
+        + (d.link ? btn('Ver proposta completa', d.link) : btn('Responder no WhatsApp', waLink('Olá, Gustavo! Sobre a proposta de ' + proj + ':')))
+        + assinatura());
+      r.texto = (primeiro ? 'Olá, ' + primeiro + '!' : 'Olá!') + '\n\nConforme conversamos, segue a proposta para ' + proj + '.\n\nEscopo:\n' + (itens.length ? itens.map(function(i){ return '- ' + i; }).join('\n') : '[ESCOPO]') + '\n\nPrazo estimado: ' + (d.prazo || '[PRAZO]') + '\nInvestimento: ' + (d.valor || '[VALOR]') + (d.pagamento ? ' · ' + d.pagamento : '') + '\n\nA proposta é válida por ' + (d.validade || '[VALIDADE]') + '.' + (d.link ? '\n\nProposta completa: ' + d.link : '') + assinaTxt;
+      r.whatsapp = (primeiro ? 'Olá, ' + primeiro + '!' : 'Olá!') + ' Aqui é o Gustavo, da Romanno.\n\nTe enviei por e-mail a proposta de ' + proj + ': ' + (d.prazo ? 'prazo de ' + d.prazo + ', ' : '') + (d.valor ? 'investimento de ' + d.valor : '') + '.' + (d.link ? '\n\nLink: ' + d.link : '') + '\n\nQualquer dúvida, me chama por aqui.';
+    }
+
+    else if (m.id === 'entrega') {
+      var projE = d.projeto || '[NOME DO PROJETO]';
+      var linhasE = [];
+      if (d.link) linhasE.push(['Endereço', '<a href="' + esc(d.link) + '" style="color:' + C.green + ';">' + esc(d.link.replace(/^https?:\/\//i, '')) + '</a>']);
+      if (d.acesso) linhasE.push(['Acesso ao painel', esc(d.acesso)]);
+      r.assunto = projE + ' está no ar';
+      r.html = layout('Seu projeto foi publicado. Veja os acessos e o suporte.', esc(projE) + ' ' + it('está no ar.'),
+        p((primeiro ? 'Olá, ' + esc(primeiro) + '.' : 'Olá.') + ' O projeto foi publicado e já está funcionando.')
+        + (linhasE.length ? boxRows(linhasE) : '')
+        + h2('O que vem agora')
+        + ul([(d.ajustes ? '<b>Período de ajustes.</b> Até ' + esc(d.ajustes) + ', ajustes pequenos estão incluídos.' : '<b>Período de ajustes.</b> Ajustes pequenos nas primeiras semanas estão incluídos.'), '<b>Suporte e manutenção.</b> Atualizações, backups e melhorias contínuas, se você quiser seguir com o plano.'])
+        + (d.link ? btn('Abrir o projeto', d.link) : '')
+        + assinatura('Obrigado pela confiança.'));
+      r.texto = (primeiro ? 'Olá, ' + primeiro + '!' : 'Olá!') + '\n\n' + projE + ' foi publicado e já está funcionando.' + (d.link ? '\n\nEndereço: ' + d.link : '') + (d.acesso ? '\nAcesso ao painel: ' + d.acesso : '') + '\n\n' + (d.ajustes ? 'Até ' + d.ajustes + ', ajustes pequenos estão incluídos.' : 'Ajustes pequenos nas primeiras semanas estão incluídos.') + '\n\nObrigado pela confiança.' + assinaTxt;
+      r.whatsapp = (primeiro ? 'Olá, ' + primeiro + '!' : 'Olá!') + ' ' + projE + ' está no ar!' +(d.link ? '\n\n' + d.link : '') + '\n\nTe mandei por e-mail os detalhes de acesso e suporte. Qualquer ajuste, me chama por aqui.';
+    }
+    return r;
+  }
+
+  // ---------- Campos e prévia ----------
+  function atualizarCampos(){
+    var id = modeloAtual().id;
+    document.querySelectorAll('[data-m]').forEach(function(el){ el.classList.toggle('hide', el.getAttribute('data-m').split(' ').indexOf(id) === -1); });
+    $('gancho').closest('.field').classList.toggle('hide', modeloAtual().grupo !== 'p');
+    $('enviar').textContent = modeloAtual().grupo === 'p' ? 'Enviar prospecção' : 'Enviar para o cliente';
+  }
+  var timer = null;
+  function atualizarPrevia(){
+    clearTimeout(timer);
+    timer = setTimeout(function(){
+      var r = montar(modeloAtual(), dados());
+      $('prevAssunto').textContent = r.assunto;
+      $('prevFrame').srcdoc = '<!doctype html><meta charset="utf-8"><body style="margin:0">' + r.html;
+      $('prevWaTexto').textContent = r.whatsapp;
+    }, 120);
+  }
+  document.querySelectorAll('input[name=modelo]').forEach(function(rd){ rd.addEventListener('change', function(){ atualizarCampos(); atualizarPrevia(); }); });
+  $('form').addEventListener('input', atualizarPrevia);
+  function aba(email){ $('tabEmail').setAttribute('aria-selected', email); $('tabWa').setAttribute('aria-selected', !email); $('prevEmail').classList.toggle('hide', !email); $('prevWa').classList.toggle('hide', email); }
+  $('tabEmail').addEventListener('click', function(){ aba(true); });
+  $('tabWa').addEventListener('click', function(){ aba(false); });
+  atualizarCampos(); atualizarPrevia();
+
+  // ---------- Envio ----------
+  var status = $('status');
   function setStatus(t, erro){ status.textContent = t; status.classList.toggle('err', !!erro); }
-
   $('form').addEventListener('submit', function(ev){
     ev.preventDefault();
-    var k = chave.value.trim();
+    var k = chave.value.trim(), m = modeloAtual(), d = dados();
     if (!k) { setStatus('Informe a chave de acesso.', true); chave.focus(); return; }
-    var empresa = $('empresa').value.trim();
-    if (!empresa) { setStatus('Informe o nome da empresa.', true); $('empresa').focus(); return; }
-    var email = $('email').value.trim(), zap = $('whatsapp').value.trim();
-    if (!email && !zap) { setStatus('Informe o WhatsApp ou o e-mail do cliente.', true); $('whatsapp').focus(); return; }
-
-    var dados = {
-      chave: k, modelo: modelo(), empresa: empresa,
-      nome: $('nome').value.trim(), whatsapp: zap, email: email,
-      site: $('site').value.trim(), pontos: $('pontos').value, gancho: $('gancho').value.trim(),
-      enviar_email: $('enviarEmail').checked
-    };
-    var botao = $('enviar'); botao.disabled = true; setStatus('Enviando…');
-    fetch(URL_WEBHOOK, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(dados) })
-      .then(function(r){ return r.json().catch(function(){ return { ok:false, erro:'Resposta inesperada do servidor (' + r.status + ').' }; }); })
+    if (!d.empresa) { setStatus('Informe o nome da empresa.', true); $('empresa').focus(); return; }
+    if (!d.email && !d.whatsapp) { setStatus('Informe o WhatsApp ou o e-mail.', true); $('whatsapp').focus(); return; }
+    var r = montar(m, d);
+    if (/\[[A-ZÇÃÕÉÍ0-9 ]+\]/.test(r.assunto + r.texto)) { setStatus('Ainda há campos entre colchetes na mensagem. Preencha antes de enviar.', true); return; }
+    var corpo = { chave:k, modelo:m.id, modeloNome:r.modeloNome, etapa:r.etapa, empresa:d.empresa, nome:d.nome, whatsapp:d.whatsapp, email:d.email,
+      site:d.site, pontos:d.pontos, enviar_email:$('enviarEmail').checked, assunto:r.assunto, html:'<!doctype html><html><head><meta charset="utf-8"></head><body style="margin:0">' + r.html + '</body></html>', texto:r.texto, whatsappTexto:r.whatsapp };
+    var b = $('enviar'); b.disabled = true; setStatus('Enviando…');
+    fetch(URL_WEBHOOK, { method:'POST', headers:{ 'Content-Type':'application/json' }, body: JSON.stringify(corpo) })
+      .then(function(res){ return res.json().catch(function(){ return { ok:false, erro:'Resposta inesperada do servidor (' + res.status + ').' }; }); })
       .then(function(res){
-        botao.disabled = false;
+        b.disabled = false;
         if (!res || !res.ok) { setStatus(res && res.erro ? res.erro : 'Não foi possível enviar. Tente de novo.', true); return; }
         try { localStorage.setItem('romanno-chave', k); } catch(e){}
-        setStatus('');
-        mostrar(res, dados);
+        setStatus(''); mostrar(res, corpo);
       })
-      .catch(function(){ botao.disabled = false; setStatus('Sem conexão com o n8n. Verifique a internet e se o fluxo está publicado.', true); });
+      .catch(function(){ b.disabled = false; setStatus('Sem conexão com o n8n. Verifique a internet e se o fluxo está publicado.', true); });
   });
 
-  function mostrar(res, dados){
+  function mostrar(res, c){
     var li = [];
-    li.push(res.emailEnviado ? 'E-mail enviado para ' + dados.email + '.' : (dados.email && dados.enviar_email ? 'O e-mail não foi enviado. Confira o endereço.' : 'E-mail não enviado.'));
-    if (res.trelloOk) li.push((res.cartaoExistia ? 'Cartão atualizado no Trello' : 'Cartão criado no Trello') + ': <a href="' + res.trelloUrl + '" target="_blank" rel="noopener">abrir</a>.');
-    else li.push('O Trello não foi atualizado. Confira a credencial no n8n.');
+    li.push(res.emailEnviado ? 'E-mail enviado para ' + esc(c.email) + '.' : (c.email && c.enviar_email ? 'O e-mail não foi enviado. Confira o endereço.' : 'E-mail não enviado.'));
+    li.push(res.trelloOk ? (res.cartaoExistia ? 'Cartão atualizado no Trello' : 'Cartão criado no Trello') + ': <a href="' + esc(res.trelloUrl) + '" target="_blank" rel="noopener">abrir</a>.' : 'O Trello não foi atualizado. Confira a credencial no n8n.');
     li.push(res.whatsappUrl ? 'Mensagem do WhatsApp pronta. Toque em “Abrir WhatsApp” e envie.' : 'Sem número de WhatsApp válido.');
     $('resLista').innerHTML = li.map(function(t){ return '<li>' + t + '</li>'; }).join('');
-    $('waTexto').textContent = res.whatsappTexto || '';
     var a = $('waLink');
     if (res.whatsappUrl) { a.href = res.whatsappUrl; a.classList.remove('hide'); } else { a.classList.add('hide'); }
-    $('resTitulo').textContent = 'Prospecção de ' + (res.empresa || dados.empresa) + ' registrada';
-    $('form').classList.add('hide'); $('resultado').classList.remove('hide');
-    $('resultado').scrollIntoView({ behavior:'smooth', block:'start' });
+    $('resTitulo').textContent = c.modeloNome + ' · ' + c.empresa;
+    $('form').classList.add('hide'); $('resultado').classList.remove('hide'); aba(false);
   }
-
   $('copiar').addEventListener('click', function(){
-    var t = $('waTexto').textContent;
-    var p; try { p = navigator.clipboard.writeText(t); } catch(e){ p = Promise.reject(e); }
-    p.then(function(){ $('copiar').textContent = 'Copiada'; setTimeout(function(){ $('copiar').textContent = 'Copiar mensagem'; }, 1600); },
-           function(){ var r = document.createRange(); r.selectNodeContents($('waTexto')); var s = getSelection(); s.removeAllRanges(); s.addRange(r); });
+    var t = $('prevWaTexto').textContent, pr;
+    try { pr = navigator.clipboard.writeText(t); } catch(e){ pr = Promise.reject(e); }
+    pr.then(function(){ $('copiar').textContent = 'Copiada'; setTimeout(function(){ $('copiar').textContent = 'Copiar mensagem'; }, 1600); },
+            function(){ aba(false); var rg = document.createRange(); rg.selectNodeContents($('prevWaTexto')); var s = getSelection(); s.removeAllRanges(); s.addRange(rg); });
   });
   $('novo').addEventListener('click', function(){
-    ['empresa','nome','whatsapp','email','site','pontos','gancho'].forEach(function(id){ $(id).value = ''; });
-    $('resultado').classList.add('hide'); $('form').classList.remove('hide'); $('empresa').focus();
+    ['empresa','nome','whatsapp','email','site','pontos','gancho','projeto','prazo','valor','pagamento','validade','escopo','link','acesso','ajustes'].forEach(function(id){ $(id).value = ''; });
+    $('resultado').classList.add('hide'); $('form').classList.remove('hide'); aba(true); atualizarPrevia(); $('empresa').focus();
   });
 })();
 </script>
