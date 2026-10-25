@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Painel de prospecção · Romanno</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,300;0,400;0,500;1,300&display=swap">
+<style>
+:root{
+  --bg:#F4F5F4; --card:#FFFFFF; --ink:#121413; --muted:#5E6662; --line:#DADEDB; --green:#1E3A2F; --soft:#E6EDE9; --danger:#9B2C2C;
+  --font:'Jost',system-ui,-apple-system,Segoe UI,sans-serif;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);font-size:16px;line-height:1.5}
+.wrap{max-width:720px;margin:0 auto;padding:40px max(16px,env(safe-area-inset-right)) 64px max(16px,env(safe-area-inset-left))}
+.brand{display:flex;flex-direction:column;gap:2px;margin-bottom:28px}
+.brand b{font-weight:400;letter-spacing:.42em;font-size:15px;color:var(--green)}
+.brand span{letter-spacing:.42em;font-size:10px;color:var(--muted)}
+h1{font-weight:300;font-size:clamp(30px,6vw,40px);line-height:1.1;margin:0 0 8px}
+h1 em{color:var(--green)}
+.lead{color:var(--muted);margin:0 0 28px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:24px}
+form{display:flex;flex-direction:column;gap:20px}
+fieldset{border:0;padding:0;margin:0;display:flex;flex-direction:column;gap:10px}
+legend{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.models{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
+.model{position:relative}
+.model input{position:absolute;opacity:0;inset:0}
+.model label{display:flex;flex-direction:column;gap:4px;border:1px solid var(--line);border-radius:8px;padding:14px 16px;cursor:pointer;min-height:44px}
+.model label small{color:var(--muted);font-size:13px}
+.model input:checked + label{border-color:var(--green);box-shadow:inset 0 0 0 1px var(--green);background:var(--soft)}
+.model input:focus-visible + label{outline:2px solid var(--green);outline-offset:2px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.field{display:flex;flex-direction:column;gap:6px;min-width:0}
+.field label{font-size:14px}
+.field label small{color:var(--muted)}
+input[type=text],input[type=email],input[type=tel],input[type=password],input[type=url],textarea{font:inherit;font-size:16px;width:100%;border:1px solid var(--line);border-radius:8px;padding:11px 12px;background:#fff;color:var(--ink)}
+textarea{min-height:110px;resize:vertical}
+input:focus,textarea:focus{outline:2px solid var(--green);outline-offset:1px;border-color:var(--green)}
+.check{display:flex;align-items:center;gap:10px;font-size:15px}
+.check input{width:20px;height:20px;accent-color:var(--green)}
+.actions{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+button,.btn{font:inherit;font-size:16px;border-radius:999px;padding:12px 22px;min-height:44px;cursor:pointer;border:1px solid var(--green);text-decoration:none;display:inline-flex;align-items:center;gap:8px}
+.primary{background:var(--green);color:#fff}
+.secondary{background:transparent;color:var(--green)}
+button:disabled{opacity:.55;cursor:wait}
+button:focus-visible,.btn:focus-visible{outline:2px solid var(--green);outline-offset:3px}
+.status{font-size:15px;color:var(--muted)}
+.status.err{color:var(--danger)}
+.result{margin-top:20px;display:flex;flex-direction:column;gap:14px}
+.result h2{font-weight:400;font-size:22px;margin:0}
+.result ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px}
+.wa{white-space:pre-wrap;background:var(--soft);border-radius:8px;padding:14px 16px;font-size:15px}
+.key{display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end}
+.key .field{flex:1 1 240px}
+.muted{color:var(--muted);font-size:14px}
+.hide{display:none!important}
+a{color:var(--green)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="brand"><b>ROMANNO</b><span>TECNOLOGIA</span></div>
+  <h1>Painel de <em>prospecção.</em></h1>
+  <p class="lead">Preencha os dados do cliente. O painel envia o e-mail, atualiza o Trello e deixa a mensagem do WhatsApp pronta.</p>
+
+  <section class="card" id="acesso">
+    <div class="key">
+      <div class="field">
+        <label for="chave">Chave de acesso</label>
+        <input id="chave" type="password" autocomplete="current-password" placeholder="Cole a chave uma vez">
+      </div>
+      <button type="button" class="secondary" id="salvarChave">Salvar neste aparelho</button>
+    </div>
+    <p class="muted" id="chaveInfo" style="margin:10px 0 0">A chave fica salva só neste navegador.</p>
+  </section>
+
+  <section class="card" style="margin-top:16px">
+    <form id="form" novalidate>
+      <fieldset>
+        <legend>Modelo</legend>
+        <div class="models">
+          <div class="model">
+            <input type="radio" name="modelo" id="m-site" value="site" checked>
+            <label for="m-site"><span>Oferta de site</span><small>Para quem ainda não tem site próprio</small></label>
+          </div>
+          <div class="model">
+            <input type="radio" name="modelo" id="m-melhoria" value="melhoria">
+            <label for="m-melhoria"><span>Melhoria de site</span><small>Vi o site e posso melhorar</small></label>
+          </div>
+        </div>
+      </fieldset>
+
+      <div class="grid">
+        <div class="field">
+          <label for="empresa">Empresa</label>
+          <input id="empresa" type="text" required placeholder="Ex.: Clínica de Estética Renata Fontany">
+        </div>
+        <div class="field">
+          <label for="nome">Nome do contato <small>(opcional)</small></label>
+          <input id="nome" type="text" placeholder="Ex.: Renata">
+        </div>
+        <div class="field">
+          <label for="whatsapp">WhatsApp</label>
+          <input id="whatsapp" type="tel" inputmode="tel" placeholder="(31) 99999-9999">
+        </div>
+        <div class="field">
+          <label for="email">E-mail <small>(opcional)</small></label>
+          <input id="email" type="email" inputmode="email" placeholder="contato@empresa.com.br">
+        </div>
+      </div>
+
+      <div class="field hide" id="campoSite">
+        <label for="site">Site do cliente</label>
+        <input id="site" type="url" inputmode="url" placeholder="empresa.com.br">
+      </div>
+      <div class="field hide" id="campoPontos">
+        <label for="pontos">O que você encontrou <small>(um ponto por linha)</small></label>
+        <textarea id="pontos" placeholder="Rodapé com o nome de outra marca&#10;Sem botão de WhatsApp&#10;Título da aba com uma data interna"></textarea>
+      </div>
+      <div class="field">
+        <label for="gancho">Frase personalizada <small>(opcional, entra no e-mail e no WhatsApp)</small></label>
+        <input id="gancho" type="text" placeholder="Ex.: Vi que vocês têm 4,9 com 95 avaliações no Google.">
+      </div>
+
+      <label class="check"><input type="checkbox" id="enviarEmail" checked> Enviar e-mail (quando houver endereço)</label>
+
+      <div class="actions">
+        <button type="submit" class="primary" id="enviar">Enviar prospecção</button>
+        <span class="status" id="status" role="status" aria-live="polite"></span>
+      </div>
+    </form>
+
+    <div class="result hide" id="resultado">
+      <h2 id="resTitulo">Prospecção registrada</h2>
+      <ul id="resLista"></ul>
+      <div class="wa" id="waTexto"></div>
+      <div class="actions">
+        <a class="btn primary hide" id="waLink" href="#" target="_blank" rel="noopener">Abrir WhatsApp</a>
+        <button type="button" class="secondary" id="copiar">Copiar mensagem</button>
+        <button type="button" class="secondary" id="novo">Novo cliente</button>
+      </div>
+    </div>
+  </section>
+</div>
+
+<script>
+(function(){
+  var URL_WEBHOOK = 'https://romanno.app.n8n.cloud/webhook/prospeccao-romanno';
+  var $ = function(id){ return document.getElementById(id); };
+  var chave = $('chave'), info = $('chaveInfo'), status = $('status');
+
+  try { var salva = localStorage.getItem('romanno-chave'); if (salva) { chave.value = salva; info.textContent = 'Chave salva neste aparelho.'; } } catch(e){}
+  $('salvarChave').addEventListener('click', function(){
+    try { localStorage.setItem('romanno-chave', chave.value.trim()); info.textContent = 'Chave salva neste aparelho.'; }
+    catch(e){ info.textContent = 'Não foi possível salvar aqui. A chave vale só para esta visita.'; }
+  });
+
+  function modelo(){ return document.querySelector('input[name=modelo]:checked').value; }
+  function ajustarCampos(){
+    var m = modelo() === 'melhoria';
+    $('campoSite').classList.toggle('hide', !m);
+    $('campoPontos').classList.toggle('hide', !m);
+  }
+  document.querySelectorAll('input[name=modelo]').forEach(function(r){ r.addEventListener('change', ajustarCampos); });
+  ajustarCampos();
+
+  function setStatus(t, erro){ status.textContent = t; status.classList.toggle('err', !!erro); }
+
+  $('form').addEventListener('submit', function(ev){
+    ev.preventDefault();
+    var k = chave.value.trim();
+    if (!k) { setStatus('Informe a chave de acesso.', true); chave.focus(); return; }
+    var empresa = $('empresa').value.trim();
+    if (!empresa) { setStatus('Informe o nome da empresa.', true); $('empresa').focus(); return; }
+    var email = $('email').value.trim(), zap = $('whatsapp').value.trim();
+    if (!email && !zap) { setStatus('Informe o WhatsApp ou o e-mail do cliente.', true); $('whatsapp').focus(); return; }
+
+    var dados = {
+      chave: k, modelo: modelo(), empresa: empresa,
+      nome: $('nome').value.trim(), whatsapp: zap, email: email,
+      site: $('site').value.trim(), pontos: $('pontos').value, gancho: $('gancho').value.trim(),
+      enviar_email: $('enviarEmail').checked
+    };
+    var botao = $('enviar'); botao.disabled = true; setStatus('Enviando…');
+    fetch(URL_WEBHOOK, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(dados) })
+      .then(function(r){ return r.json().catch(function(){ return { ok:false, erro:'Resposta inesperada do servidor (' + r.status + ').' }; }); })
+      .then(function(res){
+        botao.disabled = false;
+        if (!res || !res.ok) { setStatus(res && res.erro ? res.erro : 'Não foi possível enviar. Tente de novo.', true); return; }
+        try { localStorage.setItem('romanno-chave', k); } catch(e){}
+        setStatus('');
+        mostrar(res, dados);
+      })
+      .catch(function(){ botao.disabled = false; setStatus('Sem conexão com o n8n. Verifique a internet e se o fluxo está publicado.', true); });
+  });
+
+  function mostrar(res, dados){
+    var li = [];
+    li.push(res.emailEnviado ? 'E-mail enviado para ' + dados.email + '.' : (dados.email && dados.enviar_email ? 'O e-mail não foi enviado. Confira o endereço.' : 'E-mail não enviado.'));
+    if (res.trelloOk) li.push((res.cartaoExistia ? 'Cartão atualizado no Trello' : 'Cartão criado no Trello') + ': <a href="' + res.trelloUrl + '" target="_blank" rel="noopener">abrir</a>.');
+    else li.push('O Trello não foi atualizado. Confira a credencial no n8n.');
+    li.push(res.whatsappUrl ? 'Mensagem do WhatsApp pronta. Toque em “Abrir WhatsApp” e envie.' : 'Sem número de WhatsApp válido.');
+    $('resLista').innerHTML = li.map(function(t){ return '<li>' + t + '</li>'; }).join('');
+    $('waTexto').textContent = res.whatsappTexto || '';
+    var a = $('waLink');
+    if (res.whatsappUrl) { a.href = res.whatsappUrl; a.classList.remove('hide'); } else { a.classList.add('hide'); }
+    $('resTitulo').textContent = 'Prospecção de ' + (res.empresa || dados.empresa) + ' registrada';
+    $('form').classList.add('hide'); $('resultado').classList.remove('hide');
+    $('resultado').scrollIntoView({ behavior:'smooth', block:'start' });
+  }
+
+  $('copiar').addEventListener('click', function(){
+    var t = $('waTexto').textContent;
+    var p; try { p = navigator.clipboard.writeText(t); } catch(e){ p = Promise.reject(e); }
+    p.then(function(){ $('copiar').textContent = 'Copiada'; setTimeout(function(){ $('copiar').textContent = 'Copiar mensagem'; }, 1600); },
+           function(){ var r = document.createRange(); r.selectNodeContents($('waTexto')); var s = getSelection(); s.removeAllRanges(); s.addRange(r); });
+  });
+  $('novo').addEventListener('click', function(){
+    ['empresa','nome','whatsapp','email','site','pontos','gancho'].forEach(function(id){ $(id).value = ''; });
+    $('resultado').classList.add('hide'); $('form').classList.remove('hide'); $('empresa').focus();
+  });
+})();
+</script>
+</body>
+</html>
