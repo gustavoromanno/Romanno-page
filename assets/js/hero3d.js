@@ -13,7 +13,14 @@
   catch (e) { canvas.remove(); return; }
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
 
-  var SILVER = new THREE.Color("#9AA1A6"), GREEN = new THREE.Color("#1C3B2E");
+  // As cores vêm do canvas, para a mesma animação servir ao hero claro da home
+  // e ao hero escuro do Finanças R. Sem atributo, fica como sempre foi.
+  function corDoCanvas(attr, padrao) {
+    var v = canvas.getAttribute(attr);
+    return new THREE.Color(/^#[0-9a-fA-F]{6}$/.test(v || "") ? v : padrao);
+  }
+  var SILVER = corDoCanvas("data-cor-inicio", "#9AA1A6"),
+      GREEN  = corDoCanvas("data-cor-fim", "#1C3B2E");
   var scene = new THREE.Scene();
   var camera = new THREE.PerspectiveCamera(42, 1, .1, 100);
   camera.position.z = 9;
