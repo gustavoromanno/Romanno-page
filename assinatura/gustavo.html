@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Assinatura de e-mail — Gustavo Romano</title>
+<meta name="robots" content="noindex,nofollow">
+<style>
+body{margin:0;background:#F6F7F6;font-family:Arial,Helvetica,sans-serif;color:#111}
+.w{max-width:720px;margin:0 auto;padding:40px 16px}
+h1{font-weight:normal;font-size:24px;margin:0 0 6px}
+p{color:#6B6B6B;line-height:1.6}
+.card{background:#fff;border:1px solid #ECEFED;border-radius:16px;padding:28px;margin:20px 0;overflow-x:auto}
+button{background:#1C3B2E;color:#fff;border:0;border-radius:999px;padding:13px 22px;font-size:15px;cursor:pointer}
+button.sec{background:#fff;color:#111;border:1px solid #C9C9C9;margin-left:8px}
+ol{color:#2A2A2A;line-height:1.8;padding-left:20px}
+#ok{color:#1C6B47;margin-left:10px;font-size:14px}
+</style>
+</head>
+<body>
+<div class="w">
+  <h1>Assinatura de e-mail</h1>
+  <p>gustavo@romanno.com.br · clique em <b>Copiar assinatura</b> e cole no campo de assinatura do seu e-mail.</p>
+  <div class="card"><div id="assinatura"><table cellpadding="0" cellspacing="0" border="0" role="presentation" style="border-collapse:collapse;font-family:Arial,Helvetica,sans-serif;color:#111111;">
+  <tr>
+    <td style="padding:0 16px 0 0;vertical-align:middle;">
+      <a href="https://romanno.com.br" target="_blank" style="text-decoration:none;"><img src="https://romanno.com.br/assets/img/email/romanno-monograma-144.png" width="72" height="72" alt="Romanno Tecnologia" style="display:block;border:0;width:72px;height:72px;"></a>
+    </td>
+    <td style="padding:2px 0 2px 16px;border-left:1px solid #C9C9C9;vertical-align:middle;">
+      <div style="font-size:16px;line-height:20px;font-weight:bold;color:#111111;">Gustavo Romano</div>
+      <div style="font-size:11px;line-height:16px;letter-spacing:1.5px;font-weight:bold;color:#1C3B2E;padding-top:2px;">FUNDADOR · ROMANNO TECNOLOGIA</div>
+      <div style="font-size:13px;line-height:20px;color:#6B6B6B;padding-top:6px;">
+        <a href="https://wa.me/5531933015571" target="_blank" style="color:#6B6B6B;text-decoration:none;">(31) 93301-5571</a>&nbsp;·&nbsp;<a href="mailto:gustavo@romanno.com.br" style="color:#6B6B6B;text-decoration:none;">gustavo@romanno.com.br</a><br>
+        <a href="https://romanno.com.br" target="_blank" style="color:#1C3B2E;font-weight:bold;text-decoration:none;">romanno.com.br</a>&nbsp;·&nbsp;<a href="https://www.linkedin.com/company/romanno" target="_blank" style="color:#6B6B6B;text-decoration:none;">LinkedIn</a>
+      </div>
+      <div style="font-size:11px;line-height:16px;color:#8E959A;padding-top:4px;">Sites, sistemas e automação para empresas</div>
+    </td>
+  </tr>
+</table></div></div>
+  <button type="button" id="copiar">Copiar assinatura</button><button type="button" class="sec" id="copiar-html">Copiar código HTML</button><span id="ok"></span>
+  <h2 style="font-weight:normal;font-size:18px;margin-top:36px">Onde colar</h2>
+  <ol>
+    <li><b>Webmail Hostinger:</b> Configurações → Identidades (ou Assinatura) → gustavo@romanno.com.br → cole no campo de assinatura → Salvar.</li>
+    <li><b>Gmail</b> (se usar a conta pelo Gmail): Configurações → Ver todas → Geral → Assinatura → Criar nova → cole → Salvar alterações.</li>
+    <li><b>Outlook:</b> Configurações → E-mail → Redigir e responder → Assinatura de e-mail → cole → Salvar.</li>
+    <li><b>Celular (iPhone/Android):</b> os apps nativos aceitam só texto. Use: Gustavo Romano · Fundador · Romanno Tecnologia · (31) 93301-5571 · romanno.com.br</li>
+  </ol>
+</div>
+<script>
+var el=document.getElementById("assinatura"),ok=document.getElementById("ok");
+function aviso(t){ok.textContent=t;setTimeout(function(){ok.textContent=""},3000)}
+document.getElementById("copiar").addEventListener("click",function(){
+  try{
+    if(window.ClipboardItem&&navigator.clipboard&&navigator.clipboard.write){
+      navigator.clipboard.write([new ClipboardItem({"text/html":new Blob([el.innerHTML],{type:"text/html"}),"text/plain":new Blob([el.innerText],{type:"text/plain"})})]).then(function(){aviso("Copiada ✓")},selecionar);
+    } else selecionar();
+  }catch(e){selecionar()}
+});
+function selecionar(){var r=document.createRange();r.selectNodeContents(el);var s=getSelection();s.removeAllRanges();s.addRange(r);try{document.execCommand("copy");aviso("Copiada ✓")}catch(e){aviso("Use Ctrl+C para copiar")}}
+document.getElementById("copiar-html").addEventListener("click",function(){
+  (navigator.clipboard?navigator.clipboard.writeText(el.innerHTML.trim()):Promise.reject()).then(function(){aviso("Código copiado ✓")},function(){window.prompt("Copie o código:",el.innerHTML.trim())});
+});
+</script>
+</body>
+</html>
