@@ -130,3 +130,6 @@
   .adm-cob{grid-template-columns:1fr 1fr}
   .adm-cob .pp-field:first-child{grid-column:1/-1}
 }
+
+.pp-check a{color:var(--green);text-decoration:underline}
+.pp-foot a{color:inherit;text-decoration:underline}

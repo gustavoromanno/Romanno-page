@@ -515,3 +515,7 @@ section{scroll-margin-top:90px}
 .case-visual.rm{background:radial-gradient(circle at 75% 15%,rgba(176,122,79,.25),transparent 50%),linear-gradient(160deg,#1E2A47,#121A2E)}
 .case-visual.rm .shots-tabs button.on{background:#1E2A47;border-color:#1E2A47;color:#FAF8F3}
 .case-visual.rm .shots-view img{object-fit:contain;background:#FAF8F3}
+
+.checkline a,.footer-bottom a{text-decoration:underline;text-underline-offset:2px}
+.footer-bottom a{color:inherit}
+.footer-bottom a:hover{color:var(--white)}
