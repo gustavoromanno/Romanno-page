@@ -435,7 +435,7 @@ a{color:var(--green)}
       site:d.site, pontos:d.pontos, enviar_email:$('enviarEmail').checked, assunto:r.assunto, html:'<!doctype html><html><head><meta charset="utf-8"></head><body style="margin:0">' + r.html + '</body></html>', texto:r.texto, whatsappTexto:r.whatsapp };
     var b = $('enviar'); b.disabled = true; setStatus('Enviando…');
     fetch(URL_WEBHOOK, { method:'POST', headers:{ 'Content-Type':'application/json' }, body: JSON.stringify(corpo) })
-      .then(function(res){ return res.json().catch(function(){ return { ok:false, erro:'Resposta inesperada do servidor (' + res.status + ').' }; }); })
+      .then(function(res){ var st = res.status; return res.json().then(function(j){ if (!j || !j.ok) { j = j || {}; j.erro = j.erro || ((j.message ? 'n8n: ' + j.message : 'Erro do servidor') + ' (código ' + st + ').'); } return j; }, function(){ return { ok:false, erro:'Resposta inesperada do servidor (código ' + st + ').' }; }); })
       .then(function(res){
         b.disabled = false;
         if (!res || !res.ok) { setStatus(res && res.erro ? res.erro : 'Não foi possível enviar. Tente de novo.', true); return; }
