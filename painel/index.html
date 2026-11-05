@@ -165,7 +165,7 @@ a{color:var(--green)}
           <input id="link" type="url" inputmode="url" placeholder="https://">
         </div>
 
-        <div class="field" data-m="site melhoria automacao google">
+        <div class="field" data-m="site siteauto melhoria automacao google">
           <label for="gancho">Frase personalizada <small>(opcional, entra no e-mail e no WhatsApp)</small></label>
           <input id="gancho" type="text" placeholder="Ex.: Vi que vocês têm 4,9 com 95 avaliações no Google.">
         </div>
@@ -214,6 +214,7 @@ a{color:var(--green)}
   var MODELOS = [
     { id:'site',      grupo:'p', nome:'Oferta de site',       desc:'Quem ainda não tem site próprio', etapa:'prospeccao' },
     { id:'melhoria',  grupo:'p', nome:'Melhoria de site',     desc:'Vi o site e posso melhorar',      etapa:'prospeccao' },
+    { id:'siteauto',  grupo:'p', nome:'Site + automação',     desc:'Sem site e atende pelo WhatsApp',  etapa:'prospeccao' },
     { id:'automacao', grupo:'p', nome:'Automação de atendimento', desc:'Responder e agendar pelo WhatsApp', etapa:'prospeccao' },
     { id:'google',    grupo:'p', nome:'Perfil do Google',     desc:'Perfil incompleto ou com erros',  etapa:'prospeccao' },
     { id:'proposta',  grupo:'c', nome:'Proposta enviada',     desc:'Escopo, prazo e investimento',    etapa:'proposta' },
@@ -277,7 +278,9 @@ a{color:var(--green)}
 
   function montar(m, d){
     var empresa = d.empresa || '[EMPRESA]';
-    var primeiro = (d.nome || '').split(/\s+/)[0];
+    var partes = (d.nome || '').trim().split(/\s+/).filter(Boolean);
+    var primeiro = partes[0] || '';
+    if (/^(dra?|sra?|srta|prof[a]?)\.?$/i.test(primeiro) && partes[1]) primeiro = primeiro.replace(/\.?$/, '.') + ' ' + partes[1];
     var saud = primeiro ? 'Olá, ' + esc(primeiro) + '.' : 'Olá, equipe da ' + esc(empresa) + '.';
     var saudTxt = primeiro ? 'Olá, ' + primeiro + '!' : 'Olá, equipe da ' + empresa + '!';
     var g = d.gancho;
@@ -300,6 +303,20 @@ a{color:var(--green)}
         + p('Se fizer sentido, me chama no WhatsApp ou responda este e-mail.') + cta + assinatura(), optout);
       r.texto = saudTxt + '\n\nSou o Gustavo, da Romanno Tecnologia. Encontrei a ' + empresa + ' no Google e vi que vocês ainda não têm um site próprio.' + (g ? '\n\n' + g : '') + '\n\nO que eu faço:\n- Página profissional, com a identidade da sua marca e perfeita no computador e no celular\n- Botão de WhatsApp em todas as seções\n- Presença no Google (perfil revisado e busca local)\n- Automação opcional para responder os contatos\n\nVocê aprova o layout antes de eu começar a programar. A conversa é sem compromisso.\n\nWhatsApp: (31) 93301-5571' + assinaTxt + optoutTxt;
       r.whatsapp = saudTxt + ' Tudo bem? Aqui é o Gustavo, da Romanno Tecnologia.\n\nEncontrei a ' + empresa + ' no Google e vi que vocês ainda não têm um site próprio.' + (g ? ' ' + g : '') + '\n\nEu crio sites e páginas profissionais para clínicas e empresas, com a identidade da marca, botão de WhatsApp e tudo preparado para aparecer no Google. Posso te mostrar um exemplo de como ficaria para vocês? É sem compromisso.';
+    }
+
+    else if (m.id === 'siteauto') {
+      r.assunto = 'Site e atendimento automático para a ' + empresa;
+      r.html = layout('Um site profissional e um WhatsApp que responde na hora, para nenhum cliente ficar sem resposta.', 'Mais clientes chegando ' + it('e nenhum sem resposta.'),
+        p(saud + ' Sou o Gustavo, da Romanno Tecnologia. Encontrei a ' + esc(empresa) + ' no Google e vi que vocês ainda não têm um site próprio e que o atendimento passa quase todo pelo WhatsApp.')
+        + (g ? p(esc(g)) : '')
+        + p('Quem procura pelo Google quer entender rápido o que vocês fazem e falar com alguém, e muita gente desiste quando a resposta demora. Dá para resolver as duas coisas juntas.')
+        + h2('O que eu faço')
+        + ul(['<b>Site profissional</b>, com a identidade da sua marca e perfeito no computador e no celular.', '<b>Presença no Google</b>: perfil revisado e site preparado para a busca local.', '<b>Botão de WhatsApp</b> em todas as seções, para o cliente chamar na hora.', '<b>Automação no WhatsApp</b> que responde na hora, organiza os pedidos de horário e lembra o cliente do atendimento.'])
+        + boxText('Você aprova o layout antes de eu começar a programar e decide o que fica automático e o que fica com você. Tudo continua no seu número.')
+        + p('Se fizer sentido, me chama no WhatsApp ou responda este e-mail. A conversa é sem compromisso.') + cta + assinatura(), optout);
+      r.texto = saudTxt + '\n\nSou o Gustavo, da Romanno Tecnologia. Encontrei a ' + empresa + ' no Google e vi que vocês ainda não têm um site próprio e que o atendimento passa quase todo pelo WhatsApp.' + (g ? '\n\n' + g : '') + '\n\nO que eu faço:\n- Site profissional, com a identidade da sua marca e perfeito no computador e no celular\n- Presença no Google (perfil revisado e busca local)\n- Botão de WhatsApp em todas as seções\n- Automação no WhatsApp que responde na hora, organiza os horários e lembra o cliente do atendimento\n\nVocê aprova o layout antes de eu começar e decide o que fica automático. Tudo continua no seu número. A conversa é sem compromisso.\n\nWhatsApp: (31) 93301-5571' + assinaTxt + optoutTxt;
+      r.whatsapp = saudTxt + ' Tudo bem? Aqui é o Gustavo, da Romanno Tecnologia.\n\nEncontrei a ' + empresa + ' no Google e vi que vocês ainda não têm um site próprio.' + (g ? ' ' + g : '') + '\n\nEu crio sites profissionais para clínicas e empresas, com botão de WhatsApp e preparados para aparecer no Google, e monto uma automação que responde na hora, organiza os horários e lembra o cliente do atendimento, tudo no seu próprio número. Posso te mostrar um exemplo de como ficaria para vocês? É sem compromisso.';
     }
 
     else if (m.id === 'melhoria') {
