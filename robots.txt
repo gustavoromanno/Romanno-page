@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /previa/
+Disallow: /painel/
 
 Sitemap: https://romanno.com.br/sitemap.xml
