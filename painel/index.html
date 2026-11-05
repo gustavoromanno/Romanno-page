@@ -223,7 +223,7 @@ a{color:var(--green)}
 
 <script>
 (function(){
-  var URL_WEBHOOK = 'https://romanno.app.n8n.cloud/webhook/prospeccao-romanno';
+  var URL_WEBHOOK = 'https://romanno-pagamentos.gustavohenrikedev.workers.dev/api/painel';
   var WA_ROMANNO = '5531933015571';
   var $ = function(id){ return document.getElementById(id); };
 
@@ -460,7 +460,7 @@ a{color:var(--green)}
         if (atual) sel.value = atual;
         trelloInfo(CARTOES.length + ' clientes no quadro. Escolha um para preencher.');
       })
-      .catch(function(){ $('carregarTrello').disabled = false; trelloInfo('Sem conexão com o n8n. Você ainda pode digitar os dados à mão.'); });
+      .catch(function(){ $('carregarTrello').disabled = false; trelloInfo('Sem conexão com o servidor. Você ainda pode digitar os dados à mão.'); });
   }
   function sugerirModelo(c){
     if (c.lista === 'Proposta enviada') return 'proposta';
@@ -510,13 +510,13 @@ a{color:var(--green)}
         try { localStorage.setItem('romanno-chave', k); } catch(e){}
         setStatus(''); mostrar(res, corpo);
       })
-      .catch(function(){ b.disabled = false; setStatus('Sem conexão com o n8n. Verifique a internet e se o fluxo está publicado.', true); });
+      .catch(function(){ b.disabled = false; setStatus('Sem conexão com o servidor. Verifique a internet e tente de novo.', true); });
   });
 
   function mostrar(res, c){
     var li = [];
-    li.push(res.emailEnviado ? 'E-mail enviado para ' + esc(c.email) + '.' : (c.email && c.enviar_email ? 'O e-mail não foi enviado. Confira o endereço.' : 'E-mail não enviado.'));
-    li.push(res.trelloOk ? (res.cartaoExistia ? 'Cartão atualizado no Trello' : 'Cartão criado no Trello') + ': <a href="' + esc(res.trelloUrl) + '" target="_blank" rel="noopener">abrir</a>.' : 'O Trello não foi atualizado. Confira a credencial no n8n.');
+    li.push(res.emailEnviado ? 'E-mail enviado para ' + esc(c.email) + '.' : (c.email && c.enviar_email ? 'O e-mail não foi enviado' + (res.emailErro ? ': ' + esc(res.emailErro) : '. Confira o endereço') + '.' : 'E-mail não enviado.'));
+    li.push(res.trelloOk ? (res.cartaoExistia ? 'Cartão atualizado no Trello' : 'Cartão criado no Trello') + ': <a href="' + esc(res.trelloUrl) + '" target="_blank" rel="noopener">abrir</a>.' : 'O Trello não foi atualizado' + (res.trelloErro ? ': ' + esc(res.trelloErro) : '') + '.');
     li.push(res.whatsappUrl ? 'Mensagem do WhatsApp pronta. Toque em “Abrir WhatsApp” e envie.' : 'Sem número de WhatsApp válido.');
     $('resLista').innerHTML = li.map(function(t){ return '<li>' + t + '</li>'; }).join('');
     var a = $('waLink');

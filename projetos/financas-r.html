@@ -334,7 +334,7 @@ var io=new IntersectionObserver(function(en){en.forEach(function(x){if(x.isInter
 </script>
 <script>
 (function(){
-  var URL="https://romanno.app.n8n.cloud/webhook/lista-financas-r";
+  var URL="https://romanno-pagamentos.gustavohenrikedev.workers.dev/api/lista-espera";
   var f=document.getElementById("waitlist"); if(!f) return;
   var msg=f.querySelector(".wl-msg"), btn=f.querySelector("button"), tel=f.telefone;
   tel.addEventListener("input",function(){var d=tel.value.replace(/\D/g,"").slice(0,11),o=d;if(d.length>2)o="("+d.slice(0,2)+") "+d.slice(2);if(d.length>7)o="("+d.slice(0,2)+") "+d.slice(2,d.length-4)+"-"+d.slice(-4);tel.value=o;});
