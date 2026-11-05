@@ -40,6 +40,11 @@ form{display:flex;flex-direction:column;gap:18px}
 .field label small{color:var(--muted)}
 input[type=text],input[type=email],input[type=tel],input[type=password],input[type=url],input[type=date],textarea{font:inherit;font-size:16px;width:100%;border:1px solid var(--line);border-radius:8px;padding:10px 12px;background:#fff;color:var(--ink)}
 textarea{min-height:96px;resize:vertical}
+select{font:inherit;font-size:16px;width:100%;border:1px solid var(--line);border-radius:8px;padding:10px 12px;background:#fff;color:var(--ink);min-height:46px}
+select:focus{outline:2px solid var(--green);outline-offset:1px;border-color:var(--green)}
+.trello{display:flex;gap:10px;align-items:flex-end}
+.trello .field{flex:1}
+.trello-info{font-size:13px;color:var(--muted);margin:6px 0 0}
 input:focus,textarea:focus{outline:2px solid var(--green);outline-offset:1px;border-color:var(--green)}
 .check{display:flex;align-items:center;gap:10px;font-size:15px}
 .check input{width:20px;height:20px;accent-color:var(--green)}
@@ -89,6 +94,17 @@ a{color:var(--green)}
   <div class="layout">
     <section class="card col-form">
       <form id="form" novalidate>
+        <div>
+          <div class="trello">
+            <div class="field">
+              <label for="cartao">Cliente do Trello <small>(preenche os campos sozinho)</small></label>
+              <select id="cartao"><option value="">Digitar os dados à mão</option></select>
+            </div>
+            <button type="button" class="secondary" id="carregarTrello">Atualizar</button>
+          </div>
+          <p class="trello-info" id="trelloInfo">Escolha um cartão do quadro Prospecção de Clientes.</p>
+        </div>
+
         <div>
           <p class="group-title">Prospecção</p>
           <div class="models" id="modelosProsp"></div>
@@ -420,6 +436,58 @@ a{color:var(--green)}
   $('tabWa').addEventListener('click', function(){ aba(false); });
   atualizarCampos(); atualizarPrevia();
 
+  // ---------- Clientes do Trello ----------
+  var CARTOES = [], cartaoId = '';
+  function trelloInfo(t){ $('trelloInfo').textContent = t; }
+  function carregarTrello(){
+    var k = chave.value.trim();
+    if (!k) { trelloInfo('Informe a chave de acesso para puxar os clientes do Trello.'); return; }
+    trelloInfo('Buscando clientes no Trello…'); $('carregarTrello').disabled = true;
+    fetch(URL_WEBHOOK, { method:'POST', headers:{ 'Content-Type':'application/json' }, body: JSON.stringify({ chave:k, acao:'listar' }) })
+      .then(function(res){ var st = res.status; return res.json().then(function(j){ return j; }, function(){ return { ok:false, erro:'Resposta inesperada do servidor (código ' + st + ').' }; }); })
+      .then(function(j){
+        $('carregarTrello').disabled = false;
+        if (!j || !j.ok || !j.cartoes) { trelloInfo('Não deu para puxar do Trello: ' + ((j && (j.erro || j.message)) || 'resposta sem a lista') + ' Você ainda pode digitar à mão.'); return; }
+        CARTOES = j.cartoes; var sel = $('cartao'), atual = sel.value;
+        sel.innerHTML = '<option value="">Digitar os dados à mão</option>';
+        var grupos = {};
+        CARTOES.forEach(function(c){
+          if (!grupos[c.lista]) { grupos[c.lista] = document.createElement('optgroup'); grupos[c.lista].label = c.lista; sel.appendChild(grupos[c.lista]); }
+          var o = document.createElement('option'); o.value = c.id;
+          o.textContent = c.nome + (c.situacao === 'sem' ? ' · sem site' : c.situacao === 'melhorar' ? ' · tem site' : c.situacao === 'ok' ? ' · site ok' : '');
+          grupos[c.lista].appendChild(o);
+        });
+        if (atual) sel.value = atual;
+        trelloInfo(CARTOES.length + ' clientes no quadro. Escolha um para preencher.');
+      })
+      .catch(function(){ $('carregarTrello').disabled = false; trelloInfo('Sem conexão com o n8n. Você ainda pode digitar os dados à mão.'); });
+  }
+  function sugerirModelo(c){
+    if (c.lista === 'Proposta enviada') return 'proposta';
+    if (c.lista === 'Fechado') return 'entrega';
+    var pr = (c.precisa || '').toLowerCase(), auto = pr.indexOf('automa') > -1, site = /site|landing|p[aá]gina/.test(pr);
+    if (c.situacao === 'melhorar' || (c.site && c.situacao !== 'sem')) return auto && !site ? 'automacao' : 'melhoria';
+    if (/google|perfil/.test(pr) && !site && !auto) return 'google';
+    if (auto && site) return 'siteauto';
+    if (auto) return c.situacao === 'ok' ? 'automacao' : 'siteauto';
+    return 'site';
+  }
+  $('cartao').addEventListener('change', function(){
+    var c = CARTOES.filter(function(x){ return x.id === $('cartao').value; })[0];
+    cartaoId = c ? c.id : '';
+    if (!c) { trelloInfo('Preencha os dados à mão. O painel procura o cartão pelo telefone ou pelo nome.'); return; }
+    $('empresa').value = c.nome; $('nome').value = c.contato || ''; $('whatsapp').value = c.whatsapp || ''; $('email').value = c.email || '';
+    if (c.site) $('site').value = c.site;
+    var m = sugerirModelo(c), rd = $('m-' + m); if (rd) rd.checked = true;
+    atualizarCampos(); atualizarPrevia();
+    var faltam = [];
+    if (!c.whatsapp) faltam.push('WhatsApp'); if (!c.email) faltam.push('e-mail');
+    trelloInfo('Preenchido com o cartão “' + c.nome + '” (' + c.lista + ')' + (c.precisa ? ' · precisa: ' + c.precisa : '') + '. Modelo sugerido: ' + modeloAtual().nome + '.' + (faltam.length ? ' Sem ' + faltam.join(' e ') + ' no cartão.' : ''));
+  });
+  $('carregarTrello').addEventListener('click', carregarTrello);
+  $('salvarChave').addEventListener('click', function(){ if (!CARTOES.length) carregarTrello(); });
+  if (chave.value.trim()) carregarTrello();
+
   // ---------- Envio ----------
   var status = $('status');
   function setStatus(t, erro){ status.textContent = t; status.classList.toggle('err', !!erro); }
@@ -431,7 +499,7 @@ a{color:var(--green)}
     if (!d.email && !d.whatsapp) { setStatus('Informe o WhatsApp ou o e-mail.', true); $('whatsapp').focus(); return; }
     var r = montar(m, d);
     if (/\[[A-ZÇÃÕÉÍ0-9 ]+\]/.test(r.assunto + r.texto)) { setStatus('Ainda há campos entre colchetes na mensagem. Preencha antes de enviar.', true); return; }
-    var corpo = { chave:k, modelo:m.id, modeloNome:r.modeloNome, etapa:r.etapa, empresa:d.empresa, nome:d.nome, whatsapp:d.whatsapp, email:d.email,
+    var corpo = { chave:k, cartaoId:cartaoId, modelo:m.id, modeloNome:r.modeloNome, etapa:r.etapa, empresa:d.empresa, nome:d.nome, whatsapp:d.whatsapp, email:d.email,
       site:d.site, pontos:d.pontos, enviar_email:$('enviarEmail').checked, assunto:r.assunto, html:'<!doctype html><html><head><meta charset="utf-8"></head><body style="margin:0">' + r.html + '</body></html>', texto:r.texto, whatsappTexto:r.whatsapp };
     var b = $('enviar'); b.disabled = true; setStatus('Enviando…');
     fetch(URL_WEBHOOK, { method:'POST', headers:{ 'Content-Type':'application/json' }, body: JSON.stringify(corpo) })
@@ -463,7 +531,7 @@ a{color:var(--green)}
             function(){ aba(false); var rg = document.createRange(); rg.selectNodeContents($('prevWaTexto')); var s = getSelection(); s.removeAllRanges(); s.addRange(rg); });
   });
   $('novo').addEventListener('click', function(){
-    ['empresa','nome','whatsapp','email','site','pontos','gancho','projeto','prazo','valor','pagamento','validade','escopo','link','acesso','ajustes'].forEach(function(id){ $(id).value = ''; });
+    ['empresa','nome','whatsapp','email','site','pontos','gancho','projeto','prazo','valor','pagamento','validade','escopo','link','acesso','ajustes'].forEach(function(id){ $(id).value = ''; }); $('cartao').value = ''; cartaoId = '';
     $('resultado').classList.add('hide'); $('form').classList.remove('hide'); aba(true); atualizarPrevia(); $('empresa').focus();
   });
 })();
