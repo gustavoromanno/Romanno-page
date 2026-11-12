@@ -14,7 +14,7 @@
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
 
   // As cores vêm do canvas, para a mesma animação servir ao hero claro da home
-  // e ao hero escuro do Finanças R. Sem atributo, fica como sempre foi.
+  // e a heros escuros de projetos. Sem atributo, fica como sempre foi.
   function corDoCanvas(attr, padrao) {
     var v = canvas.getAttribute(attr);
     return new THREE.Color(/^#[0-9a-fA-F]{6}$/.test(v || "") ? v : padrao);

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Buckley — Projeto Romanno Tecnologia</title>
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Romanno Tecnologia">
+<meta property="og:title" content="Buckley — Projeto Romanno Tecnologia">
+<meta property="og:description" content="Buckley: app de finanças pessoais com contas, cartões e faturas, parcelas, empréstimos e despesas divididas em grupo, no celular e no computador. Desenvolvido pela Romanno Tecnologia.">
+<meta property="og:url" content="https://romanno.com.br/projetos/buckley.html">
+<meta property="og:image" content="https://romanno.com.br/assets/img/og/buckley.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="1200">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="description" content="Buckley: app de finanças pessoais com contas, cartões e faturas, parcelas, empréstimos e despesas divididas em grupo, no celular e no computador. Desenvolvido pela Romanno Tecnologia.">
+<meta name="theme-color" content="#1C3B2E">
+<link rel="icon" href="../assets/img/monograma.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--papel:#F6F7F6;--carta:#fff;--tinta:#111;--tinta2:#4F4F4F;--tinta3:#6B6B6B;--linha:#E4E6E4;--cofre:#1C3B2E;--cofre2:#25503F;--suave:#E7EDE9;--destaque:#2F7A5C}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--papel);color:var(--tinta);font-family:"Jost",Arial,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;height:auto;display:block}
+.wrap{width:min(1180px,calc(100% - 48px));margin:auto}
+.demo-bar{background:var(--cofre);color:#DCE5E0;font-size:12.5px;text-align:center;padding:9px 16px}
+.demo-bar a{color:#fff;text-decoration:underline;text-underline-offset:3px;margin-left:8px}
+header{position:sticky;top:0;z-index:20;background:rgba(246,247,246,.9);backdrop-filter:blur(14px);border-bottom:1px solid var(--linha)}
+.nav{height:72px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:600;font-size:20px}
+.brand img{width:34px;height:34px;border-radius:9px}
+.nav ul{display:flex;gap:28px;list-style:none;margin:0;padding:0;font-size:14.5px;color:var(--tinta2)}
+.nav ul a:hover{color:var(--tinta)}
+.btn{display:inline-flex;align-items:center;gap:10px;height:48px;padding:0 24px;border-radius:999px;background:var(--cofre);color:#fff;font-weight:500;font-size:15px;transition:transform .2s,box-shadow .2s,background .2s}
+.btn:hover{transform:translateY(-2px);background:var(--cofre2);box-shadow:0 12px 26px rgba(28,59,46,.25)}
+.btn.ghost{background:transparent;color:var(--cofre);border:1px solid var(--cofre)}
+.btn.ghost:hover{background:var(--suave);box-shadow:none}
+.btn.light{background:#fff;color:var(--cofre)}
+.btn.light:hover{background:var(--suave)}
+.hero{padding:80px 0 90px}
+.hero-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:center}
+.status{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border-radius:999px;border:1px solid var(--linha);background:#fff;color:var(--cofre);font-size:13px;font-weight:500}
+.status i{width:7px;height:7px;border-radius:50%;background:var(--destaque);box-shadow:0 0 0 4px rgba(47,122,92,.18)}
+.hero h1{font-weight:600;font-size:clamp(40px,4.8vw,64px);line-height:1.05;letter-spacing:-.02em;margin:22px 0 0}
+.hero h1 em{font-style:normal;color:var(--destaque)}
+.hero p{max-width:520px;margin:22px 0 0;color:var(--tinta2);font-size:18px;font-weight:300}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:32px}
+.browser{border-radius:14px;overflow:hidden;background:#fff;border:1px solid var(--linha);box-shadow:0 30px 70px -20px rgba(17,17,17,.3)}
+.browser-bar{display:flex;align-items:center;gap:6px;padding:10px 14px;background:#ECEFED;border-bottom:1px solid var(--linha)}
+.browser-bar i{width:9px;height:9px;border-radius:50%;background:#CBD3CE}
+.browser-bar span{margin-left:10px;flex:1;max-width:260px;padding:3px 12px;border-radius:99px;background:#fff;color:var(--tinta3);font-size:12px}
+section{padding:100px 0}
+.head{max-width:680px;margin:0 auto 52px;text-align:center}
+.kicker{color:var(--destaque);font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase}
+.head h2,.split h2{font-weight:600;font-size:clamp(30px,3.2vw,46px);line-height:1.1;letter-spacing:-.02em;margin:14px 0 0}
+.head p,.split p.lead{color:var(--tinta2);font-size:17px;font-weight:300;margin:16px 0 0}
+.white{background:#fff}
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.feat{padding:28px;border-radius:20px;background:var(--papel);border:1px solid var(--linha)}
+.feat h3{font-weight:600;font-size:19px;margin:0 0 8px}
+.feat p{margin:0;color:var(--tinta2);font-weight:300;font-size:15.5px}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.split ul{margin:22px 0 0;padding:0;list-style:none;display:grid;gap:12px;color:var(--tinta2);font-size:16px}
+.split li{display:flex;gap:12px}
+.split li:before{content:"✓";color:var(--destaque);font-weight:600}
+.shot{border-radius:24px;overflow:hidden}
+.tech{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.tech span{padding:8px 16px;border-radius:99px;background:#fff;border:1px solid var(--linha);font-size:14px;color:var(--tinta2)}
+.cta{padding:0 0 100px}
+.cta-box{border-radius:28px;padding:60px;text-align:center;color:#fff;background:radial-gradient(circle at 85% 0%,rgba(124,195,162,.28),transparent 45%),var(--cofre)}
+.cta-box h2{font-weight:600;font-size:clamp(28px,3vw,42px);margin:0;letter-spacing:-.02em}
+.cta-box p{color:#C9D6CF;max-width:520px;margin:14px auto 0;font-weight:300}
+.cta-box .actions{justify-content:center}
+.cta-box .btn.ghost{color:#fff;border-color:rgba(255,255,255,.4)}
+.cta-box .btn.ghost:hover{background:rgba(255,255,255,.08)}
+footer{border-top:1px solid var(--linha);padding:28px 0;font-size:13px;color:var(--tinta3)}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+footer a{color:var(--tinta);font-weight:500}
+.js .rv{opacity:0;transform:translateY(18px);transition:opacity .8s,transform .8s}
+.js .rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.js .rv{opacity:1;transform:none;transition:none}}
+@media(max-width:1000px){
+  .nav ul{display:none}
+  .hero-grid,.split{grid-template-columns:1fr;gap:44px}
+  .features{grid-template-columns:1fr 1fr}
+  .split .shot{order:2}
+}
+@media(max-width:600px){
+  .wrap{width:calc(100% - 32px)}
+  section{padding:72px 0}
+  .hero{padding:52px 0 64px}
+  .nav .btn{height:40px;padding:0 16px;font-size:14px}
+  .actions .btn{flex:1;justify-content:center}
+  .features{grid-template-columns:1fr}
+  .cta-box{padding:44px 22px}
+}
+</style>
+<script>document.documentElement.classList.add("js")</script>
+</head>
+<body>
+
+<div class="demo-bar">Projeto desenvolvido pela ROMANNO. <a href="../">← Voltar ao portfólio</a></div>
+
+<header>
+  <div class="wrap nav">
+    <div class="brand"><img src="../assets/img/buckley/logo.svg" alt="" width="34" height="34">Buckley</div>
+    <ul><li><a href="#recursos">Recursos</a></li><li><a href="#cartoes">Cartões</a></li><li><a href="#dividir">Dividir</a></li><li><a href="#tecnologia">Tecnologia</a></li></ul>
+    <a class="btn" href="https://www.buckley.com.br/" target="_blank" rel="noopener">Ver o site ↗</a>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="rv">
+        <span class="status"><i></i>No ar · buckley.com.br</span>
+        <h1>Finanças pessoais, <em>do jeito que a gente vive.</em></h1>
+        <p>O Buckley junta contas, cartões, parcelas, empréstimos e as despesas da casa divididas com quem mora junto, com o saldo de hoje e o do fim do mês sempre à vista. No celular e no computador, com a mesma conta.</p>
+        <div class="actions">
+          <a class="btn" href="https://www.buckley.com.br/" target="_blank" rel="noopener">Acessar o site do Buckley ↗</a>
+          <a class="btn ghost" href="#recursos">Ver recursos</a>
+        </div>
+      </div>
+      <div class="browser rv">
+        <div class="browser-bar"><i></i><i></i><i></i><span>buckley.com.br</span></div>
+        <img src="../assets/img/buckley/site-buckley.jpg" alt="Página inicial do Buckley com o cartão, a fatura do mês, os próximos vencimentos e as despesas da casa" width="1600" height="1000">
+      </div>
+    </div>
+  </section>
+
+  <section id="recursos" class="white">
+    <div class="wrap">
+      <div class="head rv"><div class="kicker">Recursos</div><h2>Do cafezinho ao financiamento.</h2><p>Cada parte foi pensada para uma situação real: a fatura que fecha no meio do mês, o empréstimo que já estava andando, a conta de luz dividida por cinco.</p></div>
+      <div class="features">
+        <div class="feat rv"><h3>Visão geral do seu jeito</h3><p>Saldo de hoje e previsto para o fim do mês, próximos vencimentos e os blocos que você escolher.</p></div>
+        <div class="feat rv"><h3>Extrato com saldo correndo</h3><p>Receitas, despesas e transferências de qualquer período, com filtros por conta, categoria e etiqueta.</p></div>
+        <div class="feat rv"><h3>Cartões e faturas</h3><p>Limite, fatura da vez, fechamento do seu banco, compras parceladas, estornos e pagamento da fatura.</p></div>
+        <div class="feat rv"><h3>Parcelas e contas fixas</h3><p>Repita por mês, semana, quinzena ou ano, e comece da parcela atual quando já estava andando.</p></div>
+        <div class="feat rv"><h3>Empréstimos</h3><p>O que você emprestou e o que pegou, quanto falta, juros embutidos e as parcelas a pagar.</p></div>
+        <div class="feat rv"><h3>Dividir despesas</h3><p>Grupos para a casa, a viagem ou o rolê, com o menor número de pagamentos para zerar.</p></div>
+        <div class="feat rv"><h3>Contas a pagar</h3><p>O que vence nos próximos dias e o que já venceu, com baixa em um toque.</p></div>
+        <div class="feat rv"><h3>Investimentos e cofrinhos</h3><p>Posição e rendimento da carteira; cofrinhos com meta e prazo dentro das suas contas.</p></div>
+        <div class="feat rv"><h3>Importar extrato</h3><p>Traga o extrato do banco em CSV ou XLSX e revise tudo antes de lançar.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="cartoes">
+    <div class="wrap split">
+      <div class="rv">
+        <div class="kicker">Cartão de crédito</div>
+        <h2>A fatura no mês em que você vai pagar.</h2>
+        <ul>
+          <li>Fechamento do seu banco: o app diz em qual fatura cada compra cai antes de salvar.</li>
+          <li>Parcelas que já estavam andando entram a partir da parcela atual.</li>
+          <li>Estornos abatem a fatura; pagamentos saem da conta que você escolher.</li>
+        </ul>
+      </div>
+      <div class="shot rv"><img src="../assets/img/buckley/card-cartoes.jpg" alt="Tela do Buckley mostrando uma compra parcelada e em qual fatura ela entra" width="1000" height="552" loading="lazy"></div>
+    </div>
+  </section>
+
+  <section id="dividir" class="white">
+    <div class="wrap split">
+      <div class="shot rv"><img src="../assets/img/buckley/card-dividir.jpg" alt="Tela do Buckley com as despesas da casa divididas entre seis pessoas" width="1000" height="543" loading="lazy"></div>
+      <div class="rv">
+        <div class="kicker">Dividir</div>
+        <h2>Conta dividida sem planilha e sem discussão.</h2>
+        <ul>
+          <li>Partes iguais, por peso ou com valor diferente para cada pessoa.</li>
+          <li>Ficha de cada pessoa: saldo, quanto custou, quanto pagou e o histórico.</li>
+          <li>Acertos com o menor número de transferências para ninguém ficar devendo.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="tecnologia">
+    <div class="wrap">
+      <div class="head rv"><div class="kicker">Tecnologia</div><h2>Feito para durar.</h2><p>Um app só, instalado pelo navegador no iPhone, Android, Windows e Mac, sem loja de aplicativos. Por trás, uma API com regras de dinheiro cobertas por testes automatizados.</p></div>
+      <div class="tech rv"><span>Java 21</span><span>Spring Boot</span><span>PostgreSQL</span><span>Flyway</span><span>PWA</span><span>Testes automatizados</span><span>Backup diário</span></div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="wrap">
+      <div class="cta-box rv">
+        <h2>Veja o Buckley funcionando.</h2>
+        <p>O site oficial tem todos os recursos, o passo a passo para instalar e o acesso ao app.</p>
+        <div class="actions">
+          <a class="btn light" href="https://www.buckley.com.br/" target="_blank" rel="noopener">Acessar o site do Buckley ↗</a>
+          <a class="btn ghost" href="../">Voltar ao portfólio</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap"><span>Buckley · projeto desenvolvido pela <a href="../">ROMANNO</a>.</span><span>© 2026 ROMANNO · CNPJ 64.518.482/0001-59 · <a href="../politica-de-privacidade.html">Privacidade</a></span></div>
+</footer>
+
+<script>
+(function(){var els=document.querySelectorAll(".rv");if(!("IntersectionObserver" in window)){els.forEach(function(e){e.classList.add("in")});return}
+var io=new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting){x.target.classList.add("in");io.unobserve(x.target)}})},{threshold:.1});els.forEach(function(e){io.observe(e)})})();
+</script>
+</body>
+</html>
