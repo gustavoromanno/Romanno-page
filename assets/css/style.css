@@ -519,3 +519,19 @@ section{scroll-margin-top:90px}
 .checkline a,.footer-bottom a{text-decoration:underline;text-underline-offset:2px}
 .footer-bottom a{color:inherit}
 .footer-bottom a:hover{color:var(--white)}
+
+/* Buckley: primeiro case, com a identidade dele (modo claro) */
+.case-buckley{font-family:"Jost",Arial,sans-serif;border-color:#D6DBD8}
+.case-buckley .case-body{background:#fff}
+.case-buckley h3{display:flex;align-items:center;gap:12px;font-weight:600;letter-spacing:-.01em;color:#111}
+.case-buckley h3 img{width:36px;height:36px;border-radius:10px}
+.case-buckley p,.case-buckley li{color:#4F4F4F}
+.case-buckley li::marker,.case-buckley li:before{color:#2F7A5C}
+.case-buckley .case-meta .status{display:inline-flex;align-items:center;gap:7px;background:#E7EDE9;color:#1C3B2E}
+.case-buckley .case-meta .status i{width:6px;height:6px;border-radius:50%;background:#2F7A5C}
+.case-buckley .link-arrow{color:#1C3B2E}
+.case-buckley .link-arrow:hover{color:#2F7A5C}
+.case-visual.fr{background:radial-gradient(circle at 75% 15%,rgba(47,122,92,.16),transparent 55%),#F6F7F6}
+.case-visual.fr .screen{border:1px solid #D6DBD8;box-shadow:0 30px 60px -24px rgba(17,17,17,.28)}
+.case-visual.fr .shots-tabs button{font-family:"Jost",Arial,sans-serif}
+.case-visual.fr .shots-tabs button.on{background:#1C3B2E;border-color:#1C3B2E;color:#fff}
