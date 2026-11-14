@@ -139,7 +139,7 @@ footer a{color:var(--verde);font-weight:500}
   <div class="wrap hero">
     <span class="tag"><i></i>AI Builder · IA aplicada a negócios</span>
     <h1>Uso IA para resolver <em>problemas reais</em>, do processo ao produto no ar.</h1>
-    <p class="lead">Na <b>Omie</b>, resolvo casos complexos de clientes do ERP nos módulos fiscal, financeiro e de estoque, e uso IA generativa para organizar o trabalho do suporte. Na <b>Romanno</b>, que eu fundei, construo sites, sistemas e automações com IA, incluindo o Buckley, um app de finanças pessoais que está no ar. Estudo Engenharia de Software na UNINTER.</p>
+    <p class="lead">Na <b>Omie</b>, resolvo casos complexos de clientes do ERP nos módulos fiscal, financeiro e de estoque, usando Gemini e Claude para chegar à causa raiz de cada problema. Na <b>Romanno</b>, que eu fundei, construo sites, sistemas e automações com IA, incluindo o Buckley, um app de finanças pessoais que está no ar. Estudo Engenharia de Software na UNINTER.</p>
     <div class="actions">
       <a class="btn" href="#projetos">Ver projetos</a>
       <a class="btn ghost" href="curriculo.pdf" target="_blank" rel="noopener">Currículo (PDF)</a>
@@ -163,22 +163,25 @@ footer a{color:var(--verde);font-weight:500}
       <!-- CASE 1 · OMIE -->
       <article class="case">
         <div class="case-media">
-          <div class="omie">
-            <span class="kicker">Omie · trabalho</span>
-            <strong>Registro de atendimentos com IA</strong>
-            <p>Um modelo por módulo (Compras e Vendas, Finanças e Serviços) para que todo atendimento siga a mesma estrutura.</p>
-            <p><span class="pendente">Espaço para um exemplo do modelo, sem dados de clientes.</span></p>
+          <div class="fluxo" aria-label="Como uso IA para chegar à causa raiz no suporte">
+            <div class="etapa"><span class="n">1</span><div><b>Cliente relata o sintoma</b><small>nota rejeitada, saldo que não bate, estoque negativo</small></div></div>
+            <div class="seta"></div>
+            <div class="etapa ia"><span class="n">IA</span><div><b>Gemini e Claude ajudam a investigar</b><small>levantam hipóteses e sugerem a ordem das checagens</small></div></div>
+            <div class="seta"></div>
+            <div class="etapa"><span class="n">3</span><div><b>Confiro nos dados reais</b><small>ERP, SEFAZ, extrato OFX, movimentações de estoque</small></div></div>
+            <div class="seta"></div>
+            <div class="etapa ia"><span class="n">IA</span><div><b>Resolvo e registro no padrão</b><small>modelo por módulo, montado com IA generativa</small></div></div>
           </div>
         </div>
         <div>
           <span class="onde">OMIE · ANALISTA DE SUPORTE TÉCNICO</span>
-          <h3>IA generativa para padronizar o registro dos atendimentos</h3>
+          <h3>IA para chegar à causa raiz de casos fiscais e financeiros</h3>
           <dl class="pss">
-            <div><dt>Problema</dt><dd>Cada analista registrava os atendimentos do seu jeito. Ficava difícil achar casos parecidos e entender quais problemas mais se repetiam em cada módulo. <span class="pendente">Confirme se era isso.</span></dd></div>
-            <div><dt>Solução</dt><dd>Usei IA generativa para criar um padrão de registro por módulo e para transformar a descrição do atendimento nesse formato. <span class="pendente">Qual ferramenta e como você usa no dia a dia.</span></dd></div>
-            <div><dt>Resultado</dt><dd><span class="pendente">Quanto tempo economiza por atendimento, ou quantas pessoas do time usam.</span></dd></div>
+            <div><dt>Problema</dt><dd>Os casos que chegam a mim são complexos: notas que não batem com a SEFAZ em empresas com várias filiais, saldo bancário diferente do extrato, estoque afetado por saldos negativos antigos. O sintoma que o cliente relata quase nunca é a causa.</dd></div>
+            <div><dt>Solução</dt><dd>Uso o Gemini e o Claude como parceiros de investigação: descrevo o caso, peço hipóteses e um roteiro do que conferir primeiro, e valido cada passo nos dados do sistema. Também usei IA generativa para criar um padrão de registro dos atendimentos por módulo (Compras e Vendas, Finanças e Serviços).</dd></div>
+            <div><dt>Resultado</dt><dd>Investigações mais organizadas, que chegam à raiz do problema em vez de corrigir só o sintoma. Os registros ficam no mesmo formato, o que facilita encontrar casos parecidos. <span class="pendente">Se puder, um número: tempo médio por caso antes e depois.</span></dd></div>
           </dl>
-          <div class="chips"><span>IA generativa</span><span>Omie ERP</span><span>Processos fiscais</span></div>
+          <div class="chips"><span>Gemini</span><span>Claude</span><span>Análise de causa raiz</span><span>NF-e / SEFAZ</span><span>Omie ERP</span></div>
         </div>
       </article>
 
@@ -231,25 +234,25 @@ footer a{color:var(--verde);font-weight:500}
       <!-- CASE 4 · PROJETO DE IA ALINHADO AO IFOOD -->
       <article class="case inv">
         <div class="case-media">
-          <div class="fluxo" aria-label="Fluxo do agente de avaliações">
-            <div class="etapa"><span class="n">1</span><div><b>Avaliações dos clientes</b><small>texto livre e notas de um restaurante</small></div></div>
+          <div class="fluxo" aria-label="Fluxo do agente que confere as notas fiscais do restaurante">
+            <div class="etapa"><span class="n">1</span><div><b>Restaurante envia os arquivos</b><small>XML das notas emitidas e relatório de pedidos e repasses</small></div></div>
             <div class="seta"></div>
-            <div class="etapa ia"><span class="n">IA</span><div><b>Agente lê e agrupa os temas</b><small>atraso, embalagem, sabor, porção, preço…</small></div></div>
+            <div class="etapa"><span class="n">2</span><div><b>Cruzamento pedido × nota</b><small>valor, data e chave de acesso de cada venda</small></div></div>
             <div class="seta"></div>
-            <div class="etapa ia"><span class="n">IA</span><div><b>Sugere 3 ações para a semana</b><small>com as avaliações que justificam cada uma</small></div></div>
+            <div class="etapa ia"><span class="n">IA</span><div><b>Agente explica cada divergência</b><small>pedido sem nota, nota cancelada, valor diferente por desconto ou taxa</small></div></div>
             <div class="seta"></div>
-            <div class="etapa"><span class="n">4</span><div><b>Resumo enviado ao dono</b><small>por e-mail ou WhatsApp</small></div></div>
+            <div class="etapa ia"><span class="n">IA</span><div><b>Relatório do que corrigir</b><small>em linguagem simples, com a nota e o pedido de cada caso</small></div></div>
           </div>
         </div>
         <div>
           <span class="onde">PROJETO DE IA · <span class="pendente">EM CONSTRUÇÃO</span></span>
-          <h3>Agente que transforma avaliações em ações para o restaurante</h3>
+          <h3>Agente que confere as notas fiscais do restaurante</h3>
           <dl class="pss">
-            <div><dt>Problema</dt><dd>O dono de restaurante recebe centenas de avaliações e não tem tempo de ler todas. As reclamações que se repetem passam despercebidas.</dd></div>
-            <div><dt>Solução</dt><dd>Um agente que agrupa as avaliações por tema, mede o que piorou na semana e sugere três ações práticas, sempre mostrando as avaliações que embasam cada sugestão.</dd></div>
-            <div><dt>Resultado</dt><dd><span class="pendente">Demo, link do código e como medi a qualidade das sugestões.</span></dd></div>
+            <div><dt>Problema</dt><dd>O dono de restaurante vende por vários canais e precisa emitir nota de cada venda. Conferir pedido por pedido se toda venda tem nota, com o valor certo, é trabalho manual, e um erro vira problema com o fisco ou com o contador.</dd></div>
+            <div><dt>Solução</dt><dd>Um agente que cruza os pedidos com os XMLs das notas, encontra o que não bate e explica a causa provável de cada divergência, com o que fazer para corrigir. A regra de conferência é feita em código; a IA entra para explicar e priorizar.</dd></div>
+            <div><dt>Resultado</dt><dd><span class="pendente">Demo com dados fictícios, link do código e quantas divergências o agente acertou num conjunto de teste.</span></dd></div>
           </dl>
-          <div class="chips"><span>LLM</span><span>Agentes</span><span>n8n</span><span>Prompt engineering</span></div>
+          <div class="chips"><span>Agentes</span><span>LLM</span><span>Python</span><span>XML de NF-e</span><span>Conciliação fiscal</span></div>
         </div>
       </article>
     </div>
@@ -264,7 +267,7 @@ footer a{color:var(--verde);font-weight:500}
       <div class="skills">
         <div class="skill">
           <h3>IA aplicada</h3>
-          <ul><li>Prompts e uso de LLMs no trabalho</li><li>Agentes e automações com IA</li><li>n8n e integrações por webhook</li><li>Python (básico)</li></ul>
+          <ul><li>Prompts e uso de LLMs no trabalho</li><li>Agentes e automações com IA</li><li>n8n e integrações por webhook</li><li>Gemini e Claude no dia a dia</li><li>Python (básico)</li></ul>
         </div>
         <div class="skill">
           <h3>Produto e negócio</h3>
