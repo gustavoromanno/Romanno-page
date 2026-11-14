@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Gustavo Romanno · AI Builder</title>
+<meta name="description" content="Portfólio de Gustavo Romanno: IA aplicada a problemas de negócio, automações, agentes e produtos web em produção.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#1C3B2E">
+<link rel="icon" href="../assets/img/monograma.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--papel:#F6F7F6;--carta:#fff;--tinta:#111;--tinta2:#4F4F4F;--tinta3:#6B6B6B;--linha:#E4E6E4;--verde:#1C3B2E;--verde2:#25503F;--suave:#E7EDE9;--destaque:#2F7A5C;--prata:#B8BEC2;--pend:#B26B00;--pendbg:#FFF6E5}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--papel);color:var(--tinta);font-family:"Jost",Arial,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;height:auto;display:block}
+.wrap{width:min(1120px,calc(100% - 32px));margin:auto}
+:focus-visible{outline:2px solid var(--verde);outline-offset:3px;border-radius:6px}
+
+/* marcação de rascunho: some quando não houver mais .pendente */
+.pendente{background:var(--pendbg);color:var(--pend);border:1px dashed var(--pend);border-radius:6px;padding:0 6px;font-weight:500}
+.rascunho{background:var(--pendbg);color:var(--pend);font-size:13px;text-align:center;padding:8px 16px;border-bottom:1px solid #F1D9A8}
+
+header{position:sticky;top:0;z-index:20;background:rgba(246,247,246,.9);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--linha)}
+.nav{height:68px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{display:flex;align-items:center;gap:12px;font-weight:500;font-size:17px}
+.brand img{width:32px;height:32px}
+.nav ul{display:flex;gap:26px;list-style:none;margin:0;padding:0;font-size:14.5px;color:var(--tinta2)}
+.nav ul a:hover{color:var(--tinta)}
+
+.btn{display:inline-flex;align-items:center;gap:10px;min-height:46px;padding:0 22px;border-radius:999px;background:var(--verde);color:#fff;font-weight:500;font-size:15px;transition:transform .2s,box-shadow .2s,background .2s;white-space:nowrap}
+.btn:hover{transform:translateY(-2px);background:var(--verde2);box-shadow:0 12px 26px rgba(28,59,46,.25)}
+.btn.ghost{background:transparent;color:var(--verde);border:1px solid var(--verde)}
+.btn.ghost:hover{background:var(--suave);box-shadow:none}
+
+.hero{padding:84px 0 72px}
+.tag{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border-radius:999px;border:1px solid var(--linha);background:#fff;color:var(--verde);font-size:13px;font-weight:500}
+.tag i{width:7px;height:7px;border-radius:50%;background:var(--destaque);box-shadow:0 0 0 4px rgba(47,122,92,.18)}
+.hero h1{font-weight:600;font-size:clamp(38px,5.6vw,68px);line-height:1.04;letter-spacing:-.025em;margin:22px 0 0;max-width:860px}
+.hero h1 em{font-style:normal;color:var(--destaque)}
+.hero p.lead{max-width:640px;margin:22px 0 0;color:var(--tinta2);font-size:18.5px;font-weight:300}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+.numeros{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:56px}
+.num{background:#fff;border:1px solid var(--linha);border-radius:18px;padding:20px 22px}
+.num b{display:block;font-size:30px;font-weight:600;color:var(--verde);line-height:1.1}
+.num span{color:var(--tinta2);font-size:14.5px}
+
+section{padding:88px 0}
+.white{background:#fff}
+.head{max-width:680px;margin:0 0 44px}
+.kicker{color:var(--destaque);font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase}
+.head h2{font-weight:600;font-size:clamp(28px,3.2vw,42px);line-height:1.12;letter-spacing:-.02em;margin:12px 0 0}
+.head p{color:var(--tinta2);font-size:17px;font-weight:300;margin:14px 0 0}
+
+.case{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:center;padding:40px 0;border-top:1px solid var(--linha)}
+.case:first-of-type{border-top:0;padding-top:0}
+.case.inv .case-media{order:2}
+.case h3{font-size:clamp(24px,2.4vw,32px);font-weight:600;letter-spacing:-.015em;margin:10px 0 0;line-height:1.15}
+.case .onde{font-size:13px;font-weight:500;color:var(--tinta3);letter-spacing:.04em}
+.pss{display:grid;gap:12px;margin:20px 0 0}
+.pss div{display:grid;grid-template-columns:96px 1fr;gap:12px;font-size:15.5px;color:var(--tinta2)}
+.pss dt,.pss .r{font-weight:600;color:var(--tinta);font-size:13px;letter-spacing:.06em;text-transform:uppercase;padding-top:3px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.chips span{font-size:13px;padding:4px 12px;border-radius:999px;background:var(--suave);color:var(--verde);font-weight:500}
+.case .link{display:inline-flex;margin-top:20px;font-weight:500;color:var(--verde);border-bottom:1px solid currentColor}
+.browser{border-radius:14px;overflow:hidden;background:#fff;border:1px solid var(--linha);box-shadow:0 26px 60px -22px rgba(17,17,17,.28)}
+.browser-bar{display:flex;align-items:center;gap:6px;padding:9px 14px;background:#ECEFED;border-bottom:1px solid var(--linha)}
+.browser-bar i{width:9px;height:9px;border-radius:50%;background:#CBD3CE}
+.browser-bar span{margin-left:10px;flex:1;max-width:240px;padding:2px 12px;border-radius:99px;background:#fff;color:var(--tinta3);font-size:12px}
+
+/* diagramas de fluxo em HTML */
+.fluxo{background:#fff;border:1px solid var(--linha);border-radius:18px;padding:26px;display:grid;gap:10px}
+.etapa{display:flex;align-items:center;gap:14px;padding:14px 16px;border-radius:12px;background:var(--papel);border:1px solid var(--linha);font-size:15px}
+.etapa b{font-weight:600}
+.etapa small{display:block;color:var(--tinta3);font-size:13px}
+.etapa .n{flex:0 0 30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--verde);color:#fff;font-size:13px;font-weight:600}
+.etapa.ia{background:var(--suave);border-color:#C9D9CF}
+.etapa.ia .n{background:var(--destaque)}
+.seta{width:2px;height:12px;background:var(--prata);margin-left:30px}
+.omie{background:linear-gradient(160deg,#fff,var(--suave));border:1px solid var(--linha);border-radius:18px;padding:30px;min-height:260px;display:flex;flex-direction:column;justify-content:center;gap:12px}
+.omie p{margin:0;color:var(--tinta2)}
+.omie strong{font-size:22px;font-weight:600;color:var(--verde)}
+
+.skills{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.skill{background:var(--papel);border:1px solid var(--linha);border-radius:18px;padding:24px}
+.skill h3{margin:0 0 10px;font-size:18px;font-weight:600}
+.skill ul{margin:0;padding-left:18px;color:var(--tinta2);font-size:15px}
+
+.sobre{display:grid;grid-template-columns:1.1fr .9fr;gap:40px}
+.sobre p{color:var(--tinta2);font-size:17px;font-weight:300;margin:0 0 14px}
+.linha-tempo{list-style:none;margin:0;padding:0;display:grid;gap:14px}
+.linha-tempo li{background:#fff;border:1px solid var(--linha);border-radius:14px;padding:16px 18px}
+.linha-tempo b{display:block}
+.linha-tempo span{color:var(--tinta3);font-size:14px}
+
+.contato{background:var(--verde);color:#fff;border-radius:26px;padding:56px 40px;text-align:center}
+.contato h2{margin:0;font-size:clamp(28px,3.4vw,42px);font-weight:600;letter-spacing:-.02em}
+.contato p{color:#DCE5E0;margin:14px auto 0;max-width:560px}
+.contato .actions{justify-content:center}
+.contato .btn{background:#fff;color:var(--verde)}
+.contato .btn.ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.5)}
+footer{padding:36px 0 44px;color:var(--tinta3);font-size:14px;text-align:center}
+footer a{color:var(--verde);font-weight:500}
+
+@media (max-width:860px){
+  .nav ul{display:none}
+  .case,.sobre{grid-template-columns:1fr;gap:26px}
+  .case.inv .case-media{order:0}
+  .skills{grid-template-columns:1fr}
+  .numeros{grid-template-columns:1fr}
+  section{padding:64px 0}
+  .hero{padding:56px 0 48px}
+  .pss div{grid-template-columns:1fr;gap:2px}
+  .contato{padding:44px 22px}
+}
+</style>
+</head>
+<body>
+
+<div class="rascunho">Rascunho: os trechos destacados assim <span class="pendente">em laranja</span> ainda precisam das suas informações.</div>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#topo"><img src="../assets/img/monograma.svg" alt="" width="32" height="32">Gustavo Romanno</a>
+    <ul>
+      <li><a href="#projetos">Projetos</a></li>
+      <li><a href="#habilidades">Habilidades</a></li>
+      <li><a href="#sobre">Sobre</a></li>
+    </ul>
+    <a class="btn ghost" href="#contato">Contato</a>
+  </div>
+</header>
+
+<main id="topo">
+  <div class="wrap hero">
+    <span class="tag"><i></i>AI Builder · IA aplicada a negócios</span>
+    <h1>Uso IA para resolver <em>problemas reais</em>, do processo ao produto no ar.</h1>
+    <p class="lead">Na <b>Omie</b>, aplico IA para <span class="pendente">resolver X no dia a dia da equipe</span>. Na <b>Romanno</b>, que eu fundei, construo sites, sistemas e automações para clientes, incluindo o Buckley, um app de finanças pessoais que está no ar.</p>
+    <div class="actions">
+      <a class="btn" href="#projetos">Ver projetos</a>
+      <a class="btn ghost" href="https://www.linkedin.com/in/gustavoromanno" target="_blank" rel="noopener">LinkedIn ↗</a>
+    </div>
+    <div class="numeros">
+      <div class="num"><b>2</b><span>produtos próprios no ar: Buckley e Romano Concursos</span></div>
+      <div class="num"><b><span class="pendente">X</span></b><span>projetos entregues para clientes reais</span></div>
+      <div class="num"><b><span class="pendente">X h</span></b><span>por semana economizadas com IA na Omie</span></div>
+    </div>
+  </div>
+
+  <section class="white" id="projetos">
+    <div class="wrap">
+      <div class="head">
+        <span class="kicker">Projetos</span>
+        <h2>Problema, solução e resultado.</h2>
+        <p>Cada projeto começa por um problema concreto de alguém. A tecnologia vem depois.</p>
+      </div>
+
+      <!-- CASE 1 · OMIE -->
+      <article class="case">
+        <div class="case-media">
+          <div class="omie">
+            <span class="kicker">Omie · trabalho</span>
+            <strong><span class="pendente">Nome curto da solução</span></strong>
+            <p>Espaço para um print ou diagrama sem dados internos. Pode ser o antes e depois do processo.</p>
+          </div>
+        </div>
+        <div>
+          <span class="onde">OMIE · <span class="pendente">SEU CARGO</span></span>
+          <h3><span class="pendente">Título: o que a IA resolveu</span></h3>
+          <dl class="pss">
+            <div><dt>Problema</dt><dd><span class="pendente">O que tomava tempo ou gerava erro, e para quem.</span></dd></div>
+            <div><dt>Solução</dt><dd><span class="pendente">O que você montou e com qual ferramenta (ChatGPT, Claude, n8n…).</span></dd></div>
+            <div><dt>Resultado</dt><dd><span class="pendente">Número: tempo economizado, erros evitados, pessoas que usam.</span></dd></div>
+          </dl>
+          <div class="chips"><span class="pendente">ferramentas</span></div>
+        </div>
+      </article>
+
+      <!-- CASE 2 · BUCKLEY -->
+      <article class="case inv">
+        <div class="case-media">
+          <div class="browser">
+            <div class="browser-bar"><i></i><i></i><i></i><span>buckley.com.br</span></div>
+            <img src="../assets/img/buckley/site-buckley.jpg" alt="Tela inicial do Buckley com o cartão, a fatura do mês, os próximos vencimentos e as despesas da casa" width="1600" height="1000" loading="lazy">
+          </div>
+        </div>
+        <div>
+          <span class="onde">PRODUTO PRÓPRIO · NO AR</span>
+          <h3>Buckley, app de finanças pessoais</h3>
+          <dl class="pss">
+            <div><dt>Problema</dt><dd>Os apps de finanças não lidam bem com a vida real: a fatura que fecha no meio do mês, a parcela que já estava andando, a conta de luz dividida entre cinco pessoas.</dd></div>
+            <div><dt>Solução</dt><dd>Um app só, para celular e computador, com contas, cartões e faturas, parcelas, empréstimos, despesas divididas em grupo e importação de extrato em CSV/XLSX.</dd></div>
+            <div><dt>Resultado</dt><dd>No ar em buckley.com.br, instalável pelo navegador, com as regras de dinheiro cobertas por testes automatizados. <span class="pendente">Nº de usuários, se quiser mostrar.</span></dd></div>
+          </dl>
+          <div class="chips"><span>Java 21</span><span>Spring Boot</span><span>PostgreSQL</span><span>PWA</span><span>Testes automatizados</span></div>
+          <a class="link" href="https://www.buckley.com.br/" target="_blank" rel="noopener">Ver o Buckley no ar ↗</a>
+        </div>
+      </article>
+
+      <!-- CASE 3 · ROMANNO: ORÇAMENTO → PROPOSTA → PAGAMENTO -->
+      <article class="case">
+        <div class="case-media">
+          <div class="fluxo" aria-label="Fluxo automatizado de orçamento a pagamento">
+            <div class="etapa"><span class="n">1</span><div><b>Cliente pede orçamento</b><small>formulário em 3 etapas no site</small></div></div>
+            <div class="seta"></div>
+            <div class="etapa"><span class="n">2</span><div><b>Servidor recebe o pedido</b><small>API no Cloudflare Workers (antes, um fluxo no n8n)</small></div></div>
+            <div class="seta"></div>
+            <div class="etapa"><span class="n">3</span><div><b>Painel monta a proposta</b><small>puxa os dados do cliente do Trello</small></div></div>
+            <div class="seta"></div>
+            <div class="etapa"><span class="n">4</span><div><b>Cliente aceita e paga</b><small>na própria página da proposta</small></div></div>
+          </div>
+        </div>
+        <div>
+          <span class="onde">ROMANNO · FERRAMENTA INTERNA</span>
+          <h3>Do pedido de orçamento ao pagamento, sem trabalho manual</h3>
+          <dl class="pss">
+            <div><dt>Problema</dt><dd>Cada orçamento passava por e-mail, conversa, documento de proposta e cobrança separada. Era lento e fácil de perder um cliente no meio do caminho.</dd></div>
+            <div><dt>Solução</dt><dd>Um fluxo único: formulário no site, servidor que registra o pedido, painel que gera a proposta com os dados do Trello e página onde o cliente aceita e paga. Comecei no n8n e migrei para um servidor próprio quando o fluxo ficou estável.</dd></div>
+            <div><dt>Resultado</dt><dd><span class="pendente">Tempo para enviar uma proposta: antes X, depois Y.</span></dd></div>
+          </dl>
+          <div class="chips"><span>n8n</span><span>Cloudflare Workers</span><span>Webhooks</span><span>Trello API</span><span>JavaScript</span></div>
+        </div>
+      </article>
+
+      <!-- CASE 4 · PROJETO DE IA ALINHADO AO IFOOD -->
+      <article class="case inv">
+        <div class="case-media">
+          <div class="fluxo" aria-label="Fluxo do agente de avaliações">
+            <div class="etapa"><span class="n">1</span><div><b>Avaliações dos clientes</b><small>texto livre e notas de um restaurante</small></div></div>
+            <div class="seta"></div>
+            <div class="etapa ia"><span class="n">IA</span><div><b>Agente lê e agrupa os temas</b><small>atraso, embalagem, sabor, porção, preço…</small></div></div>
+            <div class="seta"></div>
+            <div class="etapa ia"><span class="n">IA</span><div><b>Sugere 3 ações para a semana</b><small>com as avaliações que justificam cada uma</small></div></div>
+            <div class="seta"></div>
+            <div class="etapa"><span class="n">4</span><div><b>Resumo enviado ao dono</b><small>por e-mail ou WhatsApp</small></div></div>
+          </div>
+        </div>
+        <div>
+          <span class="onde">PROJETO DE IA · <span class="pendente">EM CONSTRUÇÃO</span></span>
+          <h3>Agente que transforma avaliações em ações para o restaurante</h3>
+          <dl class="pss">
+            <div><dt>Problema</dt><dd>O dono de restaurante recebe centenas de avaliações e não tem tempo de ler todas. As reclamações que se repetem passam despercebidas.</dd></div>
+            <div><dt>Solução</dt><dd>Um agente que agrupa as avaliações por tema, mede o que piorou na semana e sugere três ações práticas, sempre mostrando as avaliações que embasam cada sugestão.</dd></div>
+            <div><dt>Resultado</dt><dd><span class="pendente">Demo, link do código e como medi a qualidade das sugestões.</span></dd></div>
+          </dl>
+          <div class="chips"><span>LLM</span><span>Agentes</span><span>n8n</span><span>Prompt engineering</span></div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="habilidades">
+    <div class="wrap">
+      <div class="head">
+        <span class="kicker">Habilidades</span>
+        <h2>Do problema de negócio ao sistema rodando.</h2>
+      </div>
+      <div class="skills">
+        <div class="skill">
+          <h3>IA aplicada</h3>
+          <ul><li>Prompts e uso de LLMs no trabalho</li><li>Agentes e automações com IA</li><li>n8n e integrações por webhook</li><li><span class="pendente">ferramentas de IA que você usa</span></li></ul>
+        </div>
+        <div class="skill">
+          <h3>Produto e negócio</h3>
+          <ul><li>Diagnóstico com o cliente</li><li>Escopo, proposta e prazo</li><li>Processo de ponta a ponta, do pedido ao pagamento</li><li>Atendimento e suporte</li></ul>
+        </div>
+        <div class="skill">
+          <h3>Tecnologia</h3>
+          <ul><li>Java, Spring Boot e PostgreSQL</li><li>JavaScript, HTML e CSS</li><li>Cloudflare Workers, Git e GitHub</li><li>PWA e testes automatizados</li></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="white" id="sobre">
+    <div class="wrap sobre">
+      <div>
+        <div class="head" style="margin-bottom:22px">
+          <span class="kicker">Sobre</span>
+          <h2>Curioso, prático e focado em resultado.</h2>
+        </div>
+        <p>Comecei a criar sites e sistemas para resolver problemas de pessoas próximas, e isso virou a Romanno. Lá aprendi a ouvir o cliente, transformar o pedido em escopo e colocar o produto no ar.</p>
+        <p>Na Omie, uso IA todos os dias para <span class="pendente">exemplo concreto</span>. Quero levar esse jeito de trabalhar para produtos usados por milhões de pessoas.</p>
+      </div>
+      <ul class="linha-tempo">
+        <li><b>Omie · <span class="pendente">cargo</span></b><span><span class="pendente">mês/ano</span> até hoje</span></li>
+        <li><b>Romanno Tecnologia · Fundador</b><span><span class="pendente">ano</span> até hoje</span></li>
+        <li><b><span class="pendente">Curso · Instituição</span></b><span>previsão de formatura: <span class="pendente">mês/ano</span></span></li>
+        <li><b>Idiomas</b><span>Português nativo · Inglês <span class="pendente">nível</span></span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="contato">
+    <div class="wrap">
+      <div class="contato">
+        <h2>Vamos conversar?</h2>
+        <p>Se quiser saber mais sobre algum projeto ou ver o código, fale comigo.</p>
+        <div class="actions">
+          <a class="btn" href="https://www.linkedin.com/in/gustavoromanno" target="_blank" rel="noopener">LinkedIn ↗</a>
+          <a class="btn ghost" href="https://github.com/gustavoromanno" target="_blank" rel="noopener">GitHub ↗</a>
+          <a class="btn ghost" href="mailto:contato@romanno.com.br">E-mail</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  Gustavo Romanno · fundador da <a href="../">Romanno Tecnologia</a>
+</footer>
+
+</body>
+</html>
