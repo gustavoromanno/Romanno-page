@@ -245,14 +245,16 @@ footer a{color:var(--verde);font-weight:500}
           </div>
         </div>
         <div>
-          <span class="onde">PROJETO DE IA · <span class="pendente">EM CONSTRUÇÃO</span></span>
+          <span class="onde">PROJETO DE IA · PROTÓTIPO FUNCIONANDO</span>
           <h3>Agente que confere as notas fiscais do restaurante</h3>
           <dl class="pss">
             <div><dt>Problema</dt><dd>O dono de restaurante vende por vários canais e precisa emitir nota de cada venda. Conferir pedido por pedido se toda venda tem nota, com o valor certo, é trabalho manual, e um erro vira problema com o fisco ou com o contador.</dd></div>
             <div><dt>Solução</dt><dd>Um agente que cruza os pedidos com os XMLs das notas, encontra o que não bate e explica a causa provável de cada divergência, com o que fazer para corrigir. A regra de conferência é feita em código; a IA entra para explicar e priorizar.</dd></div>
-            <div><dt>Resultado</dt><dd><span class="pendente">Demo com dados fictícios, link do código e quantas divergências o agente acertou num conjunto de teste.</span></dd></div>
+            <div><dt>Resultado</dt><dd>Em 120 pedidos e cerca de 120 notas fictícios, com 21 erros plantados de 7 tipos e armadilhas que não podem ser apontadas, o conferidor encontrou todos os erros sem nenhum alarme falso, em 5 conjuntos diferentes. São 13 testes automatizados, e se a IA falhar o relatório é completado pelas regras.</dd></div>
           </dl>
-          <div class="chips"><span>Agentes</span><span>LLM</span><span>Python</span><span>XML de NF-e</span><span>Conciliação fiscal</span></div>
+          <div class="chips"><span>Python</span><span>Claude API</span><span>Saída estruturada (Pydantic)</span><span>pytest</span><span>XML de NF-e</span></div>
+          <a class="link" href="demo-conferencia.html" target="_blank" rel="noopener">Ver o relatório de demonstração ↗</a>
+          <a class="link" style="margin-left:18px" href="#"><span class="pendente">Código no GitHub</span></a>
         </div>
       </article>
     </div>

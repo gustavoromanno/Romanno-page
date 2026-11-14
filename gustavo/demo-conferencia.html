@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Conferência de notas</title>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--papel:#F6F7F6;--tinta:#111;--tinta2:#4F4F4F;--tinta3:#6B6B6B;--linha:#E4E6E4;--verde:#1C3B2E;--alta:#B3261E;--altabg:#FCEBEA;--media:#9A6200;--mediabg:#FFF4DF;--baixa:#2F7A5C;--baixabg:#E7EDE9}
+*{box-sizing:border-box}body{margin:0;background:var(--papel);color:var(--tinta);font-family:"Jost",Arial,sans-serif;line-height:1.55}
+.wrap{width:min(960px,calc(100% - 32px));margin:auto;padding:40px 0 56px}
+.aviso{background:var(--verde);color:#DCE5E0;font-size:13px;text-align:center;padding:8px 16px}
+h1{margin:0;font-size:clamp(28px,4vw,40px);letter-spacing:-.02em}
+.sub{color:var(--tinta2);margin:8px 0 0}
+.resumo{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:28px 0}
+.resumo div{background:#fff;border:1px solid var(--linha);border-radius:14px;padding:16px}
+.resumo b{display:block;font-size:26px;line-height:1.1}.resumo span{color:var(--tinta3);font-size:14px}
+.lista{display:grid;gap:12px}
+.cartao{background:#fff;border:1px solid var(--linha);border-left:4px solid var(--linha);border-radius:14px;padding:18px 20px}
+.cartao.alta{border-left-color:var(--alta)}.cartao.media{border-left-color:var(--media)}.cartao.baixa{border-left-color:var(--baixa)}
+.topo{display:flex;gap:10px;align-items:center;flex-wrap:wrap;font-size:13px}
+.selo{font-weight:600;padding:2px 10px;border-radius:99px}
+.selo.alta{color:var(--alta);background:var(--altabg)}.selo.media{color:var(--media);background:var(--mediabg)}.selo.baixa{color:var(--baixa);background:var(--baixabg)}
+.tipo{color:var(--tinta2)}.id{margin-left:auto;color:var(--tinta3)}
+h3{margin:10px 0 4px;font-size:18px}p{margin:4px 0;color:var(--tinta2)}.acao b{color:var(--tinta)}
+.chaves code{display:inline-block;margin:8px 8px 0 0;font-size:11.5px;color:var(--tinta3);word-break:break-all}
+footer{margin-top:28px;color:var(--tinta3);font-size:13px}
+@media (max-width:640px){.resumo{grid-template-columns:1fr 1fr}}
+</style></head><body>
+<div class="aviso">Demonstração com dados fictícios · projeto de Gustavo Romano</div>
+<main class="wrap">
+  <h1>Conferência de notas fiscais</h1>
+  <p class="sub">120 pedidos e 121 notas conferidos. Ordenado do mais urgente para o menos urgente.</p>
+  <div class="resumo">
+    <div><b>21</b><span>divergências</span></div>
+    <div><b style="color:var(--alta)">17</b><span>prioridade alta</span></div>
+    <div><b style="color:var(--media)">4</b><span>prioridade média</span></div>
+    <div><b style="color:var(--baixa)">0</b><span>prioridade baixa</span></div>
+  </div>
+  <div class="lista">
+      <article class="cartao alta">
+        <div class="topo"><span class="selo alta">Alta</span>
+          <span class="tipo">Nota autorizada para um pedido cancelado</span><span class="id">D05</span></div>
+        <h3>Pedido 48101</h3>
+        <p>O pedido 48101 foi cancelado, mas a nota continua autorizada.</p>
+        <p class="acao"><b>O que fazer:</b> Cancelar a nota.</p>
+        <div class="chaves"><code>31261111222333000181650010000010021534049223</code></div>
+      </article>
+      <article class="cartao alta">
+        <div class="topo"><span class="selo alta">Alta</span>
+          <span class="tipo">Valor da nota diferente do valor do pedido</span><span class="id">D06</span></div>
+        <h3>Pedido 48119</h3>
+        <p>A nota do pedido 48119 ficou R$ 8,50 abaixo do pago, o valor da taxa de entrega.</p>
+        <p class="acao"><b>O que fazer:</b> Emitir nota complementar ou ajustar o emissor para incluir a taxa de entrega.</p>
+        <div class="chaves"><code>31261111222333000181650010000010191693012461</code></div>
+      </article>
+      <article class="cartao alta">
+        <div class="topo"><span class="selo alta">Alta</span>
+          <span class="tipo">Valor da nota diferente do valor do pedido</span><span class="id">D07</span></div>
+        <h3>Pedido 48123</h3>
+        <p>A nota do pedido 48123 ficou R$ 5,99 abaixo do pago, o valor da taxa de entrega.</p>
+        <p class="acao"><b>O que fazer:</b> Emitir nota complementar ou ajustar o emissor para incluir a taxa de entrega.</p>
+        <div class="chaves"><code>31261111222333000181650010000010231726879089</code></div>
+      </article>
+      <article class="cartao alta">
+        <div class="topo"><span class="selo alta">Alta</span>
+          <span class="tipo">Pedido concluído sem nota autorizada</span><span class="id">D08</span></div>
+        <h3>Pedido 48127</h3>
+        <p>O pedido 48127 foi entregue e não tem nota.</p>
+        <p class="acao"><b>O que fazer:</b> Emitir a nota da venda.</p>
+        <div class="chaves"></div>
+      </article>
+      <article class="cartao alta">
+        <div class="topo"><span class="selo alta">Alta</span>
+          <span class="tipo">Mais de uma nota autorizada para o mesmo pedido</span><span class="id">D09</span></div>
+        <h3>Pedido 48128</h3>
+        <p>O pedido 48128 tem 2 notas autorizadas.</p>
+        <p class="acao"><b>O que fazer:</b> Cancelar a nota em duplicidade dentro do prazo.</p>
+        <div class="chaves"><code>31261111222333000181650010000010271108096440</code><code>31261111222333000181650010000010281137113002</code></div>
+      </article>
+      <article class="cartao alta">
+        <div class="topo"><span class="selo alta">Alta</span>
+          <span class="tipo">Pedido concluído, mas a única nota está cancelada</span><span class="id">D10</span></div>
+        <h3>Pedido 48130</h3>
+        <p>A nota do pedido 48130 foi cancelada e nenhuma outra foi emitida.</p>
+        <p class="acao"><b>O que fazer:</b> Emitir uma nova nota para o pedido.</p>
+        <div class="chaves"><code>31261111222333000181650010000010301876412296</code></div>
+      </article>
+      <article class="cartao alta">
+        <div class="topo"><span class="selo alta">Alta</span>
+          <span class="tipo">Valor da nota diferente do valor do pedido</span><span class="id">D11</span></div>
+        <h3>Pedido 48150</h3>
+        <p>A nota do pedido 48150 saiu R$ 5,00 acima do valor pago, exatamente o desconto dado ao cliente.</p>
+        <p class="acao"><b>O que fazer:</b> Conferir com o contador como corrigir; o imposto foi calculado sobre um valor maior.</p>
+        <div class="chaves"><code>31261111222333000181650010000010511822121005</code></div>
+      </article>
+      <article class="cartao alta">
+        <div class="topo"><span class="selo alta">Alta</span>
+          <span class="tipo">Pedido concluído sem nota autorizada</span><span class="id">D12</span></div>
+        <h3>Pedido 48153</h3>
+        <p>O pedido 48153 foi entregue e não tem nota.</p>
+        <p class="acao"><b>O que fazer:</b> Emitir a nota da venda.</p>
+        <div class="chaves"></div>
+      </article>
+      <article class="cartao alta">
+        <div class="topo"><span class="selo alta">Alta</span>
+          <span class="tipo">Pedido concluído sem nota autorizada</span><span class="id">D13</span></div>
+        <h3>Pedido 48163</h3>
+        <p>O pedido 48163 foi entregue e não tem nota.</p>
+        <p class="acao"><b>O que fazer:</b> Emitir a nota da venda.</p>
+        <div class="chaves"></div>
+      </article>
+      <article class="cartao alta">
+        <div class="topo"><span class="selo alta">Alta</span>
+          <span class="tipo">Pedido concluído, mas a única nota está cancelada</span><span class="id">D14</span></div>
+        <h3>Pedido 48167</h3>
+        <p>A nota do pedido 48167 foi cancelada e nenhuma outra foi emitida.</p>
+        <p class="acao"><b>O que fazer:</b> Emitir uma nova nota para o pedido.</p>
+        <div class="chaves"><code>31261111222333000181650010000010661940084382</code></div>
+      </article>
+      <article class="cartao alta">
+        <div class="topo"><span class="selo alta">Alta</span>
+          <span class="tipo">Nota autorizada para um pedido cancelado</span><span class="id">D15</span></div>
+        <h3>Pedido 48168</h3>
+        <p>O pedido 48168 foi cancelado, mas a nota continua autorizada.</p>
+        <p class="acao"><b>O que fazer:</b> Cancelar a nota.</p>
+        <div class="chaves"><code>31261111222333000181650010000010671570850865</code></div>
+      </article>
+      <article class="cartao alta">
+        <div class="topo"><span class="selo alta">Alta</span>
+          <span class="tipo">Valor da nota diferente do valor do pedido</span><span class="id">D16</span></div>
+        <h3>Pedido 48179</h3>
+        <p>A nota do pedido 48179 saiu R$ 10,00 acima do valor pago, exatamente o desconto dado ao cliente.</p>
+        <p class="acao"><b>O que fazer:</b> Conferir com o contador como corrigir; o imposto foi calculado sobre um valor maior.</p>
+        <div class="chaves"><code>31261111222333000181650010000010781527591199</code></div>
+      </article>
+      <article class="cartao alta">
+        <div class="topo"><span class="selo alta">Alta</span>
+          <span class="tipo">Pedido concluído sem nota autorizada</span><span class="id">D17</span></div>
+        <h3>Pedido 48189</h3>
+        <p>O pedido 48189 foi entregue e não tem nota.</p>
+        <p class="acao"><b>O que fazer:</b> Emitir a nota da venda.</p>
+        <div class="chaves"></div>
+      </article>
+      <article class="cartao alta">
+        <div class="topo"><span class="selo alta">Alta</span>
+          <span class="tipo">Mais de uma nota autorizada para o mesmo pedido</span><span class="id">D18</span></div>
+        <h3>Pedido 48190</h3>
+        <p>O pedido 48190 tem 2 notas autorizadas.</p>
+        <p class="acao"><b>O que fazer:</b> Cancelar a nota em duplicidade dentro do prazo.</p>
+        <div class="chaves"><code>31261111222333000181650010000010891354561203</code><code>31261111222333000181650010000010901193092526</code></div>
+      </article>
+      <article class="cartao alta">
+        <div class="topo"><span class="selo alta">Alta</span>
+          <span class="tipo">Valor da nota diferente do valor do pedido</span><span class="id">D19</span></div>
+        <h3>Pedido 48196</h3>
+        <p>A nota do pedido 48196 tem diferença de R$ 3,50 que não bate com desconto nem taxa.</p>
+        <p class="acao"><b>O que fazer:</b> Abrir o pedido e a nota lado a lado e conferir os itens.</p>
+        <div class="chaves"><code>31261111222333000181650010000010961702975122</code></div>
+      </article>
+      <article class="cartao alta">
+        <div class="topo"><span class="selo alta">Alta</span>
+          <span class="tipo">Valor da nota diferente do valor do pedido</span><span class="id">D20</span></div>
+        <h3>Pedido 48199</h3>
+        <p>A nota do pedido 48199 saiu R$ 15,00 acima do valor pago, exatamente o desconto dado ao cliente.</p>
+        <p class="acao"><b>O que fazer:</b> Conferir com o contador como corrigir; o imposto foi calculado sobre um valor maior.</p>
+        <div class="chaves"><code>31261111222333000181650010000010991505488476</code></div>
+      </article>
+      <article class="cartao alta">
+        <div class="topo"><span class="selo alta">Alta</span>
+          <span class="tipo">Valor da nota diferente do valor do pedido</span><span class="id">D21</span></div>
+        <h3>Pedido 48213</h3>
+        <p>A nota do pedido 48213 ficou R$ 7,99 abaixo do pago, o valor da taxa de entrega.</p>
+        <p class="acao"><b>O que fazer:</b> Emitir nota complementar ou ajustar o emissor para incluir a taxa de entrega.</p>
+        <div class="chaves"><code>31261111222333000181650010000011131102628564</code></div>
+      </article>
+      <article class="cartao media">
+        <div class="topo"><span class="selo media">Média</span>
+          <span class="tipo">Chave de acesso com dígito verificador errado</span><span class="id">D01</span></div>
+        <h3>Pedido 48134</h3>
+        <p>A chave de acesso desta nota tem o dígito verificador errado.</p>
+        <p class="acao"><b>O que fazer:</b> Conferir o XML original no portal da SEFAZ.</p>
+        <div class="chaves"><code>31261111222333000181650010000010341228175041</code></div>
+      </article>
+      <article class="cartao media">
+        <div class="topo"><span class="selo media">Média</span>
+          <span class="tipo">Chave de acesso com dígito verificador errado</span><span class="id">D02</span></div>
+        <h3>Pedido 48140</h3>
+        <p>A chave de acesso desta nota tem o dígito verificador errado.</p>
+        <p class="acao"><b>O que fazer:</b> Conferir o XML original no portal da SEFAZ.</p>
+        <div class="chaves"><code>31261111222333000181650010000010401787102647</code></div>
+      </article>
+      <article class="cartao media">
+        <div class="topo"><span class="selo media">Média</span>
+          <span class="tipo">Nota que não corresponde a nenhum pedido</span><span class="id">D03</span></div>
+        <h3>Nota sem pedido</h3>
+        <p>Existe uma nota autorizada que não aponta para nenhum pedido.</p>
+        <p class="acao"><b>O que fazer:</b> Descobrir a que venda a nota se refere.</p>
+        <div class="chaves"><code>31261111222333000181650010000011201461655491</code></div>
+      </article>
+      <article class="cartao media">
+        <div class="topo"><span class="selo media">Média</span>
+          <span class="tipo">Nota que não corresponde a nenhum pedido</span><span class="id">D04</span></div>
+        <h3>Nota sem pedido</h3>
+        <p>Existe uma nota autorizada que não aponta para nenhum pedido.</p>
+        <p class="acao"><b>O que fazer:</b> Descobrir a que venda a nota se refere.</p>
+        <div class="chaves"><code>31261111222333000181650010000011211002337241</code></div>
+      </article>
+  </div>
+  <footer>Divergências encontradas por regras em código. Explicações geradas por: regras.</footer>
+</main></body></html>
