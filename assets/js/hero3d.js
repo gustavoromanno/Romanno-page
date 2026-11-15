@@ -3,7 +3,11 @@
    Roda só enquanto o hero está visível; respeita prefers-reduced-motion. */
 (function () {
   var canvas = document.getElementById("heroCanvas");
-  var hero = document.querySelector(".hero");
+  // Com data-pos="x,y,escala" o canvas usa o próprio tamanho e uma posição fixa
+  // (ex.: órbita em volta da foto no portfólio). Sem o atributo, é o hero da home.
+  var posFixa = (canvas && canvas.getAttribute("data-pos") || "").split(",").map(Number);
+  if (posFixa.length !== 3 || posFixa.some(isNaN)) posFixa = null;
+  var hero = posFixa ? canvas : document.querySelector(".hero");
   if (!canvas || !hero) return;
   if (!window.THREE) { canvas.remove(); return; }
 
@@ -86,6 +90,12 @@
     var w = hero.clientWidth, h = hero.clientHeight, mob = w < 1020;
     renderer.setSize(w, h, false);
     camera.aspect = w / h; camera.updateProjectionMatrix();
+    if (posFixa) {
+      group.position.set(posFixa[0], posFixa[1], 0);
+      group.scale.setScalar(posFixa[2]);
+      pts.material.opacity = .9; dust.material.opacity = .4;
+      return;
+    }
     group.position.set(mob ? 1.4 : 2.1, mob ? 2.2 : .9, 0);
     group.scale.setScalar(mob ? .55 : 1.05);
     pts.material.opacity = mob ? .55 : .9; dust.material.opacity = mob ? .3 : .45;
