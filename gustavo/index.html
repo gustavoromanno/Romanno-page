@@ -126,10 +126,34 @@ section{padding:88px 0}
 
 .sobre{display:grid;grid-template-columns:1.1fr .9fr;gap:40px}
 .sobre p{color:var(--tinta2);font-size:17px;font-weight:300;margin:0 0 14px}
-.linha-tempo{list-style:none;margin:0;padding:0;display:grid;gap:14px}
-.linha-tempo li{background:#fff;border:1px solid var(--linha);border-radius:14px;padding:16px 18px}
-.linha-tempo b{display:block}
-.linha-tempo span{color:var(--tinta3);font-size:14px}
+.linha-tempo{list-style:none;margin:0;padding:0 0 0 22px;display:grid;gap:14px;position:relative}
+.linha-tempo:before{content:"";position:absolute;left:5px;top:12px;bottom:12px;width:2px;background:var(--linha)}
+.linha-tempo li{position:relative;background:var(--papel);border:1px solid var(--linha);border-radius:14px;padding:16px 18px}
+.linha-tempo li:before{content:"";position:absolute;left:-22px;top:20px;width:12px;height:12px;border-radius:50%;background:#fff;border:2px solid var(--destaque)}
+.linha-tempo li:first-child:before{background:var(--destaque);box-shadow:0 0 0 4px rgba(47,122,92,.18)}
+.lt-topo{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:baseline}
+.lt-topo b{font-weight:600}.lt-topo span{color:var(--tinta3);font-size:13.5px}
+.marcos{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+.marcos div{flex:1 1 150px;background:#fff;border:1px solid var(--linha);border-radius:10px;padding:10px 12px}
+.marcos b{display:block;font-size:20px;font-weight:600;color:var(--verde);line-height:1.15}
+.marcos span{display:block;font-size:13px;color:var(--tinta2);line-height:1.35;margin-top:2px}
+.sub-titulo{font-size:15px;font-weight:600;margin:26px 0 10px;color:var(--tinta)}
+.certs{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.certs li{display:flex;align-items:center;gap:10px;font-size:15px;color:var(--tinta2)}
+.certs svg{width:18px;height:18px;flex:0 0 18px;fill:none;stroke:var(--destaque);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.sobre p.idiomas{font-size:15px;font-weight:400}
+.disponivel{display:inline-flex;align-items:center;gap:8px;margin-top:10px;padding:5px 12px;border-radius:999px;background:#fff;border:1px solid var(--linha);color:var(--verde);font-size:13px;font-weight:500}
+.disponivel i{width:8px;height:8px;border-radius:50%;background:#2fa36b;box-shadow:0 0 0 3px rgba(47,163,107,.2);animation:pulsa 2.4s ease-in-out infinite}
+@keyframes pulsa{50%{box-shadow:0 0 0 6px rgba(47,163,107,.05)}}
+@media (prefers-reduced-motion:reduce){.disponivel i{animation:none}}
+.como{scroll-margin-top:70px}
+.passos{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:16px;counter-reset:none}
+.passos li{background:#fff;border:1px solid var(--linha);border-radius:18px;padding:24px 22px}
+.passos .n{display:block;font-size:34px;font-weight:600;color:var(--destaque);line-height:1;letter-spacing:-.02em}
+.passos h3{font-size:18px;font-weight:600;margin:14px 0 8px}
+.passos p{margin:0;font-size:15px;color:var(--tinta2)}
+.nota-ia{margin:22px 0 0;font-size:15px;color:var(--tinta2);display:flex;gap:10px;align-items:center}
+.nota-ia:before{content:"";flex:0 0 8px;height:8px;border-radius:50%;background:var(--destaque)}
 
 .contato{background:var(--verde);color:#fff;border-radius:26px;padding:56px 40px;text-align:center}
 .contato h2{margin:0;font-size:clamp(28px,3.4vw,42px);font-weight:600;letter-spacing:-.02em}
@@ -141,6 +165,7 @@ footer{padding:36px 0 44px;color:var(--tinta3);font-size:14px;text-align:center}
 footer a{color:var(--verde);font-weight:500}
 
 @media (max-width:860px){
+  .passos{grid-template-columns:1fr 1fr}
   .perfil-grid{grid-template-columns:1fr;gap:8px}
   .perfil{display:grid;grid-template-columns:96px 1fr;gap:4px 16px;align-items:center}
   .foto-orbita{width:96px;height:96px;grid-row:span 2}
@@ -152,6 +177,7 @@ footer a{color:var(--verde);font-weight:500}
   .apresentacao{padding-top:20px}
   .grupos{grid-template-columns:1fr;margin-top:40px}
   .pins{grid-template-columns:1fr}
+
   .nav ul{display:none}
   .case,.sobre{grid-template-columns:1fr;gap:26px}
   .case.inv .case-media{order:0}
@@ -162,6 +188,7 @@ footer a{color:var(--verde);font-weight:500}
   .pss div{grid-template-columns:1fr;gap:2px}
   .contato{padding:44px 22px}
 }
+@media (max-width:560px){.passos{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -171,6 +198,7 @@ footer a{color:var(--verde);font-weight:500}
   <div class="wrap nav">
     <a class="brand" href="#topo"><img src="../assets/img/monograma.svg" alt="" width="32" height="32">Gustavo Romano</a>
     <ul>
+      <li><a href="#como-uso-ia">Como uso IA</a></li>
       <li><a href="#projetos">Projetos</a></li>
       <li><a href="#stack">Stack</a></li>
       <li><a href="#sobre">Trajetória</a></li>
@@ -187,7 +215,7 @@ footer a{color:var(--verde);font-weight:500}
           <canvas id="heroCanvas" data-pos="0,0,1.05" aria-hidden="true"></canvas>
           <img class="foto" src="foto.jpg" alt="Foto de Gustavo Romano" width="260" height="260">
         </div>
-        <div class="perfil-nome"><h2>Gustavo Romano</h2><div class="user">gustavoromanno</div></div>
+        <div class="perfil-nome"><h2>Gustavo Romano</h2><div class="user">gustavoromanno</div><span class="disponivel"><i></i>Disponível para oportunidades</span></div>
         <p class="bio">AI Engineer em formação. IA aplicada a problemas fiscais e financeiros.</p>
         <ul class="meta">
           <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>Omie · Romanno Tecnologia</li>
@@ -221,6 +249,23 @@ footer a{color:var(--verde);font-weight:500}
       <div class="num"><b>3</b><span>módulos do ERP no meu dia a dia na Omie: fiscal, financeiro e estoque</span></div>
     </div>
   </div>
+
+  <section id="como-uso-ia" class="como">
+    <div class="wrap">
+      <div class="head">
+        <span class="kicker">Como eu uso IA</span>
+        <h2>IA como primeira opção, mas não para tudo.</h2>
+        <p>Quatro passos que sigo antes de colocar IA em qualquer processo.</p>
+      </div>
+      <ol class="passos">
+        <li><span class="n">01</span><h3>Entender o problema</h3><p>Antes de abrir qualquer ferramenta, quero saber quem sofre com o problema, quanto ele custa e como medir. No suporte da Omie, o sintoma que o cliente relata quase nunca é a causa.</p></li>
+        <li><span class="n">02</span><h3>Separar regra de julgamento</h3><p>O que precisa ser exato (regra fiscal, cálculo, validação) fica no código, com testes. A IA entra onde é preciso interpretar, explicar ou priorizar.</p></li>
+        <li><span class="n">03</span><h3>Construir pequeno</h3><p>Começo pela versão mais simples que resolve. O fluxo de propostas da Romanno nasceu no n8n e só virou servidor próprio quando ficou estável.</p></li>
+        <li><span class="n">04</span><h3>Medir antes de escalar</h3><p>Gabarito, comparação com o processo atual e um plano para quando a IA errar. No agente de notas, se a IA falhar, as regras completam o relatório.</p></li>
+      </ol>
+      <p class="nota-ia">No dia a dia uso Claude, Claude Code e Gemini. O código que a IA ajuda a escrever passa por teste automatizado antes de valer.</p>
+    </div>
+  </section>
 
   <section class="white" id="projetos">
     <div class="wrap">
@@ -342,19 +387,33 @@ footer a{color:var(--verde);font-weight:500}
     <div class="wrap sobre">
       <div>
         <div class="head" style="margin-bottom:22px">
-          <span class="kicker">Sobre</span>
+          <span class="kicker">Trajetória</span>
           <h2>Da operação ao código.</h2>
         </div>
         <p>Passei seis anos dentro da operação das empresas: atendimento e financeiro numa escola de cursos, faturamento numa cooperativa e, hoje, suporte técnico do Omie ERP. Lá aprendi como os processos fiscais e financeiros funcionam de verdade e onde eles costumam travar.</p>
         <p>Em 2026 fundei a Romanno para transformar esse olhar em produto: sites, sistemas e automações com IA. Hoje meu foco é back-end e IA: quero construir sistemas inteligentes para problemas que afetam milhões de pessoas.</p>
+        <h3 class="sub-titulo">Certificações</h3>
+        <ul class="certs">
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="9" r="6"/><path d="M8.5 13.5 7 22l5-3 5 3-1.5-8.5"/></svg>Inteligência Artificial</li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="9" r="6"/><path d="M8.5 13.5 7 22l5-3 5 3-1.5-8.5"/></svg>Introdução à programação com Python</li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="9" r="6"/><path d="M8.5 13.5 7 22l5-3 5 3-1.5-8.5"/></svg>Fundamentos da Lógica de Programação</li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="9" r="6"/><path d="M8.5 13.5 7 22l5-3 5 3-1.5-8.5"/></svg>Pacote Office 2016 (110 h)</li>
+        </ul>
+        <h3 class="sub-titulo">Idiomas</h3>
+        <p class="idiomas">Português nativo · Inglês básico, em estudo</p>
       </div>
-      <ul class="linha-tempo">
-        <li><b>Omie · Analista de suporte técnico</b><span>maio de 2026 até hoje</span></li>
-        <li><b>Romanno Tecnologia · Fundador</b><span>janeiro de 2026 até hoje</span></li>
-        <li><b>Minascoop · Faturamento</b><span>março de 2024 a dezembro de 2025</span></li>
-        <li><b>Engenharia de Software · UNINTER</b><span>2025 a 2028 (previsão de formatura: julho de 2028)</span></li>
-        <li><b>Idiomas</b><span>Português nativo · Inglês básico, em estudo</span></li>
-      </ul>
+      <ol class="linha-tempo">
+        <li><div class="lt-topo"><b>Omie · Analista de suporte técnico</b><span>mai 2026 – hoje</span></div>
+          <div class="marcos"><div><b>1h30–2h</b><span>por caso complexo, da abertura ao fechamento</span></div><div><b>3 módulos</b><span>fiscal, financeiro e estoque</span></div></div></li>
+        <li><div class="lt-topo"><b>Romanno Tecnologia · Fundador</b><span>jan 2026 – hoje</span></div>
+          <div class="marcos"><div><b>~8 h</b><span>para enviar a proposta (prazo prometido: 2 dias úteis)</span></div><div><b>2</b><span>plataformas em Java no ar</span></div></div></li>
+        <li><div class="lt-topo"><b>Minascoop · Faturamento</b><span>mar 2024 – dez 2025</span></div>
+          <div class="marcos"><div><b>Promovido</b><span>de assistente a analista de sistemas de faturamento</span></div></div></li>
+        <li><div class="lt-topo"><b>Cursos Amirom · Assistente administrativo</b><span>jan 2020 – abr 2023</span></div>
+          <div class="marcos"><div><b>3 anos</b><span>em atendimento, matrículas e controle financeiro</span></div></div></li>
+        <li><div class="lt-topo"><b>Engenharia de Software · UNINTER</b><span>2025 – 2028</span></div>
+          <div class="marcos"><div><b>Jul 2028</b><span>previsão de formatura</span></div></div></li>
+      </ol>
     </div>
   </section>
 
