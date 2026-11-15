@@ -49,6 +49,32 @@ header{position:sticky;top:0;z-index:20;background:rgba(246,247,246,.9);backdrop
 .contatos a:hover{border-bottom-color:currentColor}
 .contatos svg{width:18px;height:18px;fill:currentColor;flex:0 0 18px}
 .contatos svg.traco{fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.perfil-grid{display:grid;grid-template-columns:280px 1fr;gap:64px;align-items:start}
+.perfil .foto{width:260px;height:260px;border-radius:50%;object-fit:cover;background:var(--suave);border:1px solid var(--linha);box-shadow:0 0 0 6px #fff,0 0 0 7px var(--linha)}
+.perfil-nome h2{margin:22px 0 0;font-size:26px;font-weight:600;line-height:1.2;letter-spacing:-.01em}
+.perfil .user{color:var(--tinta3);font-size:19px;font-weight:300}
+.perfil .bio{margin:12px 0 16px;font-size:15px;color:#2a2a2a}
+.perfil .meta{list-style:none;padding:0;margin:0;font-size:14.5px;color:var(--tinta2);display:grid;gap:9px}
+.perfil .meta li{display:flex;gap:10px;align-items:center}
+.perfil .meta a:hover{color:var(--verde);text-decoration:underline}
+.perfil .meta svg{width:17px;height:17px;flex:0 0 17px;fill:none;stroke:var(--verde);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.apresentacao{padding-top:28px}
+.hero .apresentacao h1{font-size:clamp(34px,4.3vw,54px);margin-top:12px}
+.hero .apresentacao .lead{max-width:640px}
+.grupos{margin-top:60px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px;scroll-margin-top:90px}
+.g{background:#fff;border:1px solid var(--linha);border-radius:18px;padding:22px}
+.g h3{margin:0 0 14px;font-size:15px;color:var(--tinta3);font-weight:500}
+.g .chips{margin:0}.g .chips span{display:inline-flex;align-items:center;gap:7px;font-size:14px;padding:6px 12px}
+.chips i{width:9px;height:9px;border-radius:50%;flex:0 0 9px}
+.pins-titulo{font-size:16px;font-weight:500;margin:0 0 12px}
+.pins{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:56px}
+.pin{display:block;background:#fff;border:1px solid var(--linha);border-radius:12px;padding:18px;transition:border-color .2s,box-shadow .2s}
+.pin:hover{border-color:var(--verde);box-shadow:0 10px 24px -14px rgba(28,59,46,.35)}
+.pin b{color:var(--verde);font-weight:600}
+.pin p{font-size:14px;color:var(--tinta2);margin:8px 0 14px}
+.pin .lang{font-size:13px;color:var(--tinta3);display:inline-flex;align-items:center;gap:6px}
+.pin .lang i{width:11px;height:11px;border-radius:50%}
+#propostas{scroll-margin-top:90px}
 .numeros{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:56px}
 .num{background:#fff;border:1px solid var(--linha);border-radius:18px;padding:20px 22px}
 .num b{display:block;font-size:30px;font-weight:600;color:var(--verde);line-height:1.1}
@@ -112,6 +138,15 @@ footer{padding:36px 0 44px;color:var(--tinta3);font-size:14px;text-align:center}
 footer a{color:var(--verde);font-weight:500}
 
 @media (max-width:860px){
+  .perfil-grid{grid-template-columns:1fr;gap:8px}
+  .perfil{display:grid;grid-template-columns:96px 1fr;gap:4px 16px;align-items:center}
+  .perfil .foto{width:96px;height:96px;grid-row:span 2;box-shadow:0 0 0 4px #fff,0 0 0 5px var(--linha)}
+  .perfil-nome h2{margin:0;font-size:22px}
+  .perfil .bio,.perfil .meta{grid-column:1/-1}
+  .perfil .bio{margin:10px 0 6px}
+  .apresentacao{padding-top:20px}
+  .grupos{grid-template-columns:1fr;margin-top:40px}
+  .pins{grid-template-columns:1fr}
   .nav ul{display:none}
   .case,.sobre{grid-template-columns:1fr;gap:26px}
   .case.inv .case-media{order:0}
@@ -132,8 +167,8 @@ footer a{color:var(--verde);font-weight:500}
     <a class="brand" href="#topo"><img src="../assets/img/monograma.svg" alt="" width="32" height="32">Gustavo Romano</a>
     <ul>
       <li><a href="#projetos">Projetos</a></li>
-      <li><a href="#habilidades">Habilidades</a></li>
-      <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#stack">Stack</a></li>
+      <li><a href="#sobre">Trajetória</a></li>
     </ul>
     <a class="btn ghost" href="#contato">Contato</a>
   </div>
@@ -141,18 +176,37 @@ footer a{color:var(--verde);font-weight:500}
 
 <main id="topo">
   <div class="wrap hero">
-    <span class="tag"><i></i>AI Engineer · back-end, agentes e IA aplicada</span>
-    <h1>Construo sistemas <em>em produção</em> e coloco IA onde ela resolve.</h1>
-    <p class="lead">Estudo Engenharia de Software na UNINTER e construí duas plataformas em <b>Java, Spring Boot e PostgreSQL</b> que estão no ar, entre elas o Buckley, um app de finanças pessoais. Na <b>Omie</b>, resolvo casos complexos do ERP nos módulos fiscal, financeiro e de estoque, usando Gemini e Claude para chegar à causa raiz. Agora junto as duas coisas: agentes de IA para problemas fiscais e financeiros.</p>
-    <div class="actions">
-      <a class="btn" href="#projetos">Ver projetos</a>
-      <a class="btn ghost" href="curriculo.pdf" target="_blank" rel="noopener">Currículo (PDF)</a>
+    <div class="perfil-grid">
+      <aside class="perfil">
+        <img class="foto" src="foto.jpg" alt="Foto de Gustavo Romano" width="260" height="260">
+        <div class="perfil-nome"><h2>Gustavo Romano</h2><div class="user">gustavoromanno</div></div>
+        <p class="bio">AI Engineer em formação. IA aplicada a problemas fiscais e financeiros.</p>
+        <ul class="meta">
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>Omie · Romanno Tecnologia</li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Belo Horizonte, MG</li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c3 2 9 2 12 0v-5"/></svg>Eng. de Software · UNINTER</li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6.5 8.5-6.5"/></svg><a href="mailto:gustavo@romanno.com.br">gustavo@romanno.com.br</a></li>
+        </ul>
+      </aside>
+      <div class="apresentacao">
+        <span class="kicker">AI Engineer em formação · Belo Horizonte</span>
+        <h1>Oi, eu sou o Gustavo. Construo sistemas e coloco <em>IA onde ela resolve.</em></h1>
+        <p class="lead">Analista de suporte técnico na <b>Omie</b>, fundador da <b>Romanno</b> e estudante de Engenharia de Software. Seis anos em processos fiscais e financeiros, agora do lado de quem constrói: plataformas em Java no ar e agentes de IA para problemas que eu conheço por dentro.</p>
+        <div class="actions">
+          <a class="btn" href="#projetos">Ver projetos</a>
+          <a class="btn ghost" href="curriculo.pdf" target="_blank" rel="noopener">Currículo (PDF)</a>
+          <a class="btn ghost" href="https://www.linkedin.com/in/gustavoromanno" target="_blank" rel="noopener">LinkedIn ↗</a>
+          <a class="btn ghost" href="https://github.com/gustavoromanno" target="_blank" rel="noopener">GitHub ↗</a>
+        </div>
+      </div>
     </div>
-    <ul class="contatos" aria-label="Contato">
-      <li><a href="https://www.linkedin.com/in/gustavoromanno" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.5h4v11H3zM9.5 9.5h3.8v1.6h.1c.5-1 1.8-2 3.8-2 4 0 4.8 2.6 4.8 6v5.4h-4v-4.8c0-1.2 0-2.6-1.6-2.6s-1.9 1.2-1.9 2.5v4.9h-4z"/></svg>LinkedIn</a></li>
-      <li><a href="https://github.com/gustavoromanno" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.6 22.4c.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 0 1 5.8 0c2.2-1.5 3.2-1.2 3.2-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.9 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.2c0 .3.2.7.8.6A11.5 11.5 0 0 0 12 .5z"/></svg>GitHub</a></li>
-      <li><a href="mailto:gustavo@romanno.com.br"><svg viewBox="0 0 24 24" aria-hidden="true" class="traco"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6.5 8.5-6.5"/></svg>gustavo@romanno.com.br</a></li>
-    </ul>
+
+    <div class="grupos" id="stack">
+      <div class="g"><h3>Linguagens</h3><div class="chips"><span><i style="background:#b07219"></i>Java</span><span><i style="background:#3572A5"></i>Python</span><span><i style="background:#c9a400"></i>JavaScript</span><span><i style="background:#336791"></i>SQL</span><span><i style="background:#e34c26"></i>HTML/CSS</span></div></div>
+      <div class="g"><h3>Frameworks e ferramentas</h3><div class="chips"><span>Spring Boot</span><span>PostgreSQL</span><span>Flyway</span><span>Cloudflare Workers</span><span>Git</span><span>pytest</span></div></div>
+      <div class="g"><h3>IA e automação</h3><div class="chips"><span>Claude</span><span>Gemini</span><span>Claude Code</span><span>n8n</span><span>Saída estruturada</span></div></div>
+    </div>
+
     <div class="numeros">
       <div class="num"><b>6 anos</b><span>trabalhando com processos fiscais, financeiros e de atendimento</span></div>
       <div class="num"><b>2</b><span>plataformas em Java no ar: Buckley e Romano Concursos</span></div>
@@ -166,6 +220,14 @@ footer a{color:var(--verde);font-weight:500}
         <span class="kicker">Projetos</span>
         <h2>Sistemas em produção e IA aplicada.</h2>
         <p>Cada projeto começa por um problema concreto e termina com código rodando.</p>
+      </div>
+
+      <h3 class="pins-titulo">Projetos fixados</h3>
+      <div class="pins">
+        <a class="pin" href="https://github.com/gustavoromanno/conferencia-nfe" target="_blank" rel="noopener"><b>conferencia-nfe</b><p>Agente que cruza pedidos com NF-e e usa IA para explicar cada divergência.</p><span class="lang"><i style="background:#3572A5"></i>Python · Claude API</span></a>
+        <a class="pin" href="https://www.buckley.com.br/" target="_blank" rel="noopener"><b>buckley</b><p>App de finanças pessoais no ar: cartões, parcelas e despesas divididas.</p><span class="lang"><i style="background:#b07219"></i>Java · Spring Boot</span></a>
+        <a class="pin" href="https://romanoconcursos.com.br/" target="_blank" rel="noopener"><b>romano-concursos</b><p>Plataforma de estudos com banco de questões e simulados.</p><span class="lang"><i style="background:#b07219"></i>Java · PostgreSQL</span></a>
+        <a class="pin" href="#propostas"><b>fluxo-de-propostas</b><p>Do orçamento ao pagamento: a proposta sai em média em 8 horas.</p><span class="lang"><i style="background:#c9a400"></i>JavaScript · Cloudflare Workers</span></a>
       </div>
 
       <!-- CASE 1 · OMIE -->
@@ -215,7 +277,7 @@ footer a{color:var(--verde);font-weight:500}
       </article>
 
       <!-- CASE 3 · ROMANNO: ORÇAMENTO → PROPOSTA → PAGAMENTO -->
-      <article class="case">
+      <article class="case" id="propostas">
         <div class="case-media">
           <div class="fluxo" aria-label="Fluxo automatizado de orçamento a pagamento">
             <div class="etapa"><span class="n">1</span><div><b>Cliente pede orçamento</b><small>formulário em 3 etapas no site</small></div></div>
@@ -265,29 +327,6 @@ footer a{color:var(--verde);font-weight:500}
           <a class="link" style="margin-left:18px" href="https://github.com/gustavoromanno/conferencia-nfe" target="_blank" rel="noopener">Código no GitHub ↗</a>
         </div>
       </article>
-    </div>
-  </section>
-
-  <section id="habilidades">
-    <div class="wrap">
-      <div class="head">
-        <span class="kicker">Habilidades</span>
-        <h2>Engenharia, IA e conhecimento do negócio.</h2>
-      </div>
-      <div class="skills">
-        <div class="skill">
-          <h3>Engenharia de software</h3>
-          <ul><li>Java 21, Spring Boot e PostgreSQL</li><li>APIs REST, migrações com Flyway e testes automatizados</li><li>JavaScript, Cloudflare Workers e PWA</li><li>Git, GitHub e deploy contínuo</li></ul>
-        </div>
-        <div class="skill">
-          <h3>IA e LLMs</h3>
-          <ul><li>Gemini e Claude no dia a dia de trabalho</li><li>Prompts, agentes e tool calling</li><li>Integração de LLMs por API e webhooks (n8n)</li><li>Python (em evolução)</li></ul>
-        </div>
-        <div class="skill">
-          <h3>Domínio de negócio</h3>
-          <ul><li>Processos fiscais (NF-e, NFS-e, SEFAZ, Reforma Tributária)</li><li>Conciliação bancária e financeira</li><li>Mapeamento de processos e fluxogramas</li><li>Excel e Power BI</li></ul>
-        </div>
-      </div>
     </div>
   </section>
 
